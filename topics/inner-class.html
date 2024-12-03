@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inner Classes in Java</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <!-- Placeholder for Header -->
+  <div id="header-container"></div>
+
+  <main>
+    <section>
+      <h2>Inner Classes in Java</h2>
+      <p>In Java, inner classes are defined within another class. These classes have access to the members (fields and methods) of the outer class. There are different types of inner classes: Member Inner Class, Static Nested Class, Local Inner Class, and Anonymous Inner Class.</p>
+
+      <h3>1. Member Inner Class</h3>
+      <p>A member inner class is defined inside a class, but outside of any method, constructor, or block. It has access to the instance variables and methods of the outer class.</p>
+      <pre><code>
+class OuterClass {
+    private String outerField = "Outer class field";
+
+    // Member inner class
+    class InnerClass {
+        void display() {
+            System.out.println("Accessing outer class field: " + outerField);
+        }
+    }
+
+    public static void main(String[] args) {
+        OuterClass outer = new OuterClass();
+        OuterClass.InnerClass inner = outer.new InnerClass();
+        inner.display(); // Output: Accessing outer class field: Outer class field
+    }
+}
+      </code></pre>
+
+      <h3>2. Static Nested Class</h3>
+      <p>A static nested class is declared with the <code>static</code> keyword. It can only access static members of the outer class.</p>
+      <pre><code>
+class OuterClass {
+    private static String staticOuterField = "Static outer class field";
+
+    // Static nested class
+    static class StaticNestedClass {
+        void display() {
+            System.out.println("Accessing static outer class field: " + staticOuterField);
+        }
+    }
+
+    public static void main(String[] args) {
+        OuterClass.StaticNestedClass nested = new OuterClass.StaticNestedClass();
+        nested.display(); // Output: Accessing static outer class field: Static outer class field
+    }
+}
+      </code></pre>
+
+      <h3>3. Local Inner Class</h3>
+      <p>A local inner class is defined inside a method or a block. It can access local variables of the method if they are declared as <code>final</code> or effectively <code>final</code>.</p>
+      <pre><code>
+class OuterClass {
+    void outerMethod() {
+        final String localVariable = "Local variable";
+
+        // Local inner class inside outerMethod
+        class LocalInnerClass {
+            void display() {
+                System.out.println("Accessing local variable: " + localVariable);
+            }
+        }
+
+        LocalInnerClass localInner = new LocalInnerClass();
+        localInner.display(); // Output: Accessing local variable: Local variable
+    }
+
+    public static void main(String[] args) {
+        OuterClass outer = new OuterClass();
+        outer.outerMethod();
+    }
+}
+      </code></pre>
+
+      <h3>4. Anonymous Inner Class</h3>
+      <p>An anonymous inner class is a nameless class used for implementing interfaces or extending classes in a concise manner. They are often used in event handling or when creating one-time-use objects.</p>
+      <pre><code>
+interface Greeting {
+    void sayHello();
+}
+
+public class OuterClass {
+    public static void main(String[] args) {
+        // Anonymous inner class implementing Greeting interface
+        Greeting greeting = new Greeting() {
+            public void sayHello() {
+                System.out.println("Hello from anonymous inner class!");
+            }
+        };
+        greeting.sayHello(); // Output: Hello from anonymous inner class!
+    }
+}
+      </code></pre>
+
+      <h3>Key Points:</h3>
+      <ul>
+        <li><strong>Member Inner Class:</strong> Defined inside a class, can access both static and instance members of the outer class.</li>
+        <li><strong>Static Nested Class:</strong> Defined with the <code>static</code> keyword, it can only access static members of the outer class.</li>
+        <li><strong>Local Inner Class:</strong> Defined within a method, can access local variables if they are <code>final</code> or effectively <code>final</code>.</li>
+        <li><strong>Anonymous Inner Class:</strong> A nameless class used for quick one-time object creation, often for implementing interfaces or extending classes.</li>
+      </ul>
+
+      <h3>Benefits of Inner Classes:</h3>
+      <ul>
+        <li><strong>Encapsulation:</strong> Inner classes allow better encapsulation by hiding implementation details within the outer class.</li>
+        <li><strong>Code Organization:</strong> They help organize related classes together, improving code readability and maintainability.</li>
+        <li><strong>Access to Outer Class Members:</strong> Inner classes can access private members of the outer class.</li>
+      </ul>
+    </section>
+    <section>
+        <h2>Design Patterns and SOLID Principles in Java</h2>
+  
+        <!-- Singleton Pattern -->
+        <h3>1. Singleton Pattern</h3>
+        <p>The Singleton pattern ensures that a class has only one instance and provides a global point of access to it. This is useful when exactly one object is needed to coordinate actions across the system.</p>
+        <pre><code>
+  class Singleton {
+      private static Singleton instance;
+  
+      private Singleton() {
+          // Private constructor to prevent instantiation
+      }
+  
+      public static Singleton getInstance() {
+          if (instance == null) {
+              instance = new Singleton();
+          }
+          return instance;
+      }
+  }
+  
+  public class SingletonExample {
+      public static void main(String[] args) {
+          Singleton singleton1 = Singleton.getInstance();
+          Singleton singleton2 = Singleton.getInstance();
+  
+          // Both references point to the same instance
+          System.out.println(singleton1 == singleton2); // Output: true
+      }
+  }
+        </code></pre>
+  
+        <!-- Prototype Pattern -->
+        <h3>2. Prototype Pattern</h3>
+        <p>The Prototype pattern allows an object to create a copy of itself. This is typically used when creating a new instance of an object is costly or time-consuming, and you can clone an existing instance instead.</p>
+        <pre><code>
+  class Prototype implements Cloneable {
+      private String name;
+  
+      public Prototype(String name) {
+          this.name = name;
+      }
+  
+      public String getName() {
+          return name;
+      }
+  
+      @Override
+      protected Object clone() throws CloneNotSupportedException {
+          return super.clone();
+      }
+  }
+  
+  public class PrototypeExample {
+      public static void main(String[] args) throws CloneNotSupportedException {
+          Prototype original = new Prototype("Original");
+          Prototype cloned = (Prototype) original.clone();
+  
+          System.out.println("Original name: " + original.getName());
+          System.out.println("Cloned name: " + cloned.getName());
+      }
+  }
+        </code></pre>
+  
+        <!-- Has Relationship -->
+        <h3>3. Has Relationship</h3>
+        <p>A "Has" relationship refers to a relationship where one object contains or has references to another object. This is also known as composition, where one object is composed of other objects to build a more complex structure.</p>
+        <pre><code>
+  class Engine {
+      public void start() {
+          System.out.println("Engine starting...");
+      }
+  }
+  
+  class Car {
+      private Engine engine;
+  
+      public Car() {
+          engine = new Engine();
+      }
+  
+      public void startCar() {
+          engine.start();
+          System.out.println("Car is now running.");
+      }
+  }
+  
+  public class CarExample {
+      public static void main(String[] args) {
+          Car car = new Car();
+          car.startCar();  // Output: Engine starting... Car is now running.
+      }
+  }
+        </code></pre>
+  
+        <!-- SOLID Principles -->
+        <h3>4. SOLID Principles</h3>
+        <p>SOLID is a set of design principles that help software developers design more maintainable, understandable, and flexible systems. The SOLID principles stand for:</p>
+  
+        <h4>S - Single Responsibility Principle (SRP)</h4>
+        <p>A class should have only one reason to change, meaning it should only have one job or responsibility.</p>
+        <pre><code>
+  class Invoice {
+      private double amount;
+  
+      public void calculateAmount() {
+          // Calculation logic here
+      }
+  
+      public void printInvoice() {
+          // Print invoice logic here
+      }
+  }
+  
+  class InvoicePrinter {
+      public void printInvoice(Invoice invoice) {
+          // Logic to print the invoice
+      }
+  }
+        </code></pre>
+  
+        <h4>O - Open/Closed Principle (OCP)</h4>
+        <p>A class should be open for extension but closed for modification. This allows new functionality to be added without modifying the existing code.</p>
+        <pre><code>
+  abstract class Shape {
+      abstract void draw();
+  }
+  
+  class Circle extends Shape {
+      void draw() {
+          System.out.println("Drawing a Circle");
+      }
+  }
+  
+  class Rectangle extends Shape {
+      void draw() {
+          System.out.println("Drawing a Rectangle");
+      }
+  }
+  
+  public class ShapeExample {
+      public static void main(String[] args) {
+          Shape circle = new Circle();
+          Shape rectangle = new Rectangle();
+  
+          circle.draw();  // Output: Drawing a Circle
+          rectangle.draw();  // Output: Drawing a Rectangle
+      }
+  }
+        </code></pre>
+  
+        <h4>L - Liskov Substitution Principle (LSP)</h4>
+        <p>Objects of a superclass should be replaceable with objects of a subclass without affecting the correctness of the program.</p>
+        <pre><code>
+  class Bird {
+      void fly() {
+          System.out.println("Flying...");
+      }
+  }
+  
+  class Sparrow extends Bird {
+      void fly() {
+          System.out.println("Sparrow flying...");
+      }
+  }
+  
+  class Ostrich extends Bird {
+      void fly() {
+          System.out.println("Ostrich can't fly!");
+      }
+  }
+        </code></pre>
+  
+        <h4>I - Interface Segregation Principle (ISP)</h4>
+        <p>No client should be forced to depend on methods it does not use. It advocates for creating smaller, more specific interfaces instead of one large interface.</p>
+        <pre><code>
+  interface Printer {
+      void print();
+  }
+  
+  interface Scanner {
+      void scan();
+  }
+  
+  class MultiFunctionMachine implements Printer, Scanner {
+      public void print() {
+          System.out.println("Printing...");
+      }
+  
+      public void scan() {
+          System.out.println("Scanning...");
+      }
+  }
+        </code></pre>
+  
+        <h4>D - Dependency Inversion Principle (DIP)</h4>
+        <p>High-level modules should not depend on low-level modules. Both should depend on abstractions. Additionally, abstractions should not depend on details. Details should depend on abstractions.</p>
+        <pre><code>
+  interface Database {
+      void save();
+  }
+  
+  class MySQLDatabase implements Database {
+      public void save() {
+          System.out.println("Saving to MySQL database");
+      }
+  }
+  
+  class DataService {
+      private Database database;
+  
+      public DataService(Database database) {
+          this.database = database;
+      }
+  
+      public void saveData() {
+          database.save();
+      }
+  }
+        </code></pre>
+  
+      </section>
+  </main>
+
+  <!-- Placeholder for Footer -->
+  <div id="footer-container"></div>
+
+  <script src="../js/scripts.js"></script>
+</body>
+</html>

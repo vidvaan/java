@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Software Installation and HelloWorld in Java</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <!-- Placeholder for Header -->
+  <div id="header-container"></div>
+
+  <main>
+    <section>
+      <h2>Software Installation</h2>
+      <p>Before you can start programming in Java, you need to install the Java Development Kit (JDK) and set up your development environment. Here's how you can install Java and set up your workspace.</p>
+      
+      <h3>Step 1: Download and Install JDK</h3>
+      <ul>
+        <li>Visit the official Oracle website: <a href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html" target="_blank">Oracle JDK Downloads</a>.</li>
+        <li>Choose the version of JDK you want to download and select the appropriate installer for your operating system (Windows, macOS, or Linux).</li>
+        <li>Run the installer and follow the on-screen instructions to complete the installation.</li>
+        <li>Once installed, set up the Java environment variables (like PATH) to run Java from the command line.</li>
+      </ul>
+      
+      <h3>Step 2: Install Notepad++ (Optional, for Windows users)</h3>
+      <ul>
+        <li>Notepad++ is a popular text editor that you can use to write Java code. Download it from <a href="https://notepad-plus-plus.org/downloads/" target="_blank">here</a>.</li>
+        <li>Install Notepad++ following the on-screen instructions.</li>
+        <li>Ensure you have the JDK properly installed and configured before you begin coding in Notepad++.</li>
+      </ul>
+
+      <h3>Step 3: Install Eclipse IDE</h3>
+      <ul>
+        <li>Download Eclipse IDE from the official website: <a href="https://www.eclipse.org/downloads/" target="_blank">Eclipse Downloads</a>.</li>
+        <li>Choose the version that suits Java development (Eclipse IDE for Java Developers) and install it.</li>
+        <li>Launch Eclipse after installation and set up a new workspace for your projects.</li>
+        <li>Ensure Eclipse is configured with the correct JDK (set up in Preferences under Java > Installed JREs).</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>HelloWorld in Java</h2>
+      <p>Let's write and run a simple "Hello World" Java program using Notepad and Eclipse.</p>
+      
+      <h3>Option 1: Using Notepad</h3>
+      <p>Follow these steps to create a Java program using Notepad:</p>
+      <ul>
+        <li>Open Notepad and write the following code:</li>
+        <div class="code-container">
+          <pre id="code1"><code>
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+          </code></pre>
+        </div>
+        <li>Save the file with a <strong>.java</strong> extension (e.g., <strong>HelloWorld.java</strong>).</li>
+        <li>Open the command prompt or terminal and navigate to the directory where the file is saved.</li>
+        <li>Compile the program using the following command:
+            <pre>javac HelloWorld.java</pre>
+        </li>
+        <li>Run the program using the following command:
+            <pre>java HelloWorld</pre>
+        </li>
+        <li>You should see the output: <strong>Hello, World!</strong></li>
+      </ul>
+
+      <h3>Option 2: Using Eclipse</h3>
+      <p>To create a "Hello World" program in Eclipse, follow these steps:</p>
+      <ul>
+        <li>Open Eclipse and create a new Java project by selecting <strong>File > New > Java Project</strong>.</li>
+        <li>Give your project a name (e.g., "HelloWorld") and click <strong>Finish</strong>.</li>
+        <li>Inside the new project, create a new Java class by selecting <strong>File > New > Class</strong>.</li>
+        <li>Name the class <strong>HelloWorld</strong> and check the box for <strong>public static void main(String[] args)</strong> to automatically add the main method.</li>
+        <li>In the editor, write the following code inside the main method:</li>
+        <pre>
+System.out.println("Hello, World!");
+        </pre>
+        <li>Click the green <strong>Run</strong> button in Eclipse, and you should see the output in the console: <strong>Hello, World!</strong></li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Placeholder for Footer -->
+  <div id="footer-container"></div>
+  
+  <script src="../js/scripts.js"></script>
+</body>
+</html>

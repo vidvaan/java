@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class and Object in Java</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<!-- Placeholder for Header -->
+<div id="header-container"></div>
+  <main>
+    <section>
+      <h2>What is a Class?</h2>
+      <p>A class is a blueprint or template for creating objects in Java. It defines properties (fields) and methods (behaviors) that objects created from the class will have.</p>
+      <p>In Java, everything is part of a class, and the class contains fields (attributes) and methods (functions) to perform actions.</p>
+      <p><strong>Example:</strong></p>
+      <pre><code>
+public class Car {
+    // Instance variables (properties)
+    String color;
+    String model;
+
+    // Constructor (initializer for the class)
+    public Car(String color, String model) {
+        this.color = color;
+        this.model = model;
+    }
+
+    // Method (defines behavior)
+    void drive() {
+        System.out.println("The " + color + " " + model + " is driving.");
+    }
+}
+      </code></pre>
+      <p>In this example, the `Car` class defines two properties (`color`, `model`) and a method (`drive`) to simulate behavior.</p>
+    </section>
+
+    <section>
+      <h2>What is an Object?</h2>
+      <p>An object is an instance of a class. It has a state (attributes defined in the class) and behavior (methods defined in the class).</p>
+      <p><strong>Example:</strong></p>
+      <pre><code>
+public class Main {
+    public static void main(String[] args) {
+        // Creating an object of the Car class
+        Car myCar = new Car("Red", "Toyota");
+        // Calling the method using the object
+        myCar.drive();  // Output: The Red Toyota is driving.
+    }
+}
+      </code></pre>
+      <p>In the above code, `myCar` is an object of the `Car` class, and we use this object to call the `drive()` method.</p>
+    </section>
+
+    <section>
+      <h2>Class Variables (Fields)</h2>
+      <p>Class variables (fields) are properties that represent the state of an object. They are declared within a class but outside methods or constructors.</p>
+      <p><strong>Example:</strong></p>
+      <pre><code>
+public class Person {
+    // Instance variables (fields)
+    String name;
+    int age;
+
+    // Constructor
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Method
+    void display() {
+        System.out.println("Name: " + name + ", Age: " + age);
+    }
+}
+      </code></pre>
+      <p>Here, the `name` and `age` fields represent the state of the `Person` object.</p>
+    </section>
+
+    <section>
+      <h2>Types of Variables in Java</h2>
+      <p>Java has three types of variables:</p>
+      <ul>
+        <li><strong>Local variables:</strong> Declared inside methods, constructors, or blocks. These variables are used within that scope only.</li>
+        <li><strong>Instance variables:</strong> Declared inside the class, but outside methods. They represent the state of an object and are specific to each object.</li>
+        <li><strong>Static variables:</strong> Declared with the <code>static</code> keyword. They are shared across all instances of the class.</li>
+      </ul>
+      <h2>Differences Between Types of Variables in Java</h2>
+
+  <p>In Java, variables can be categorized into three types: <strong>Instance Variables</strong>, <strong>Class Variables</strong>, and <strong>Local Variables</strong>.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Variable Type</th>
+        <th>Description</th>
+        <th>Example</th>
+        <th>Scope</th>
+        <th>Memory Allocation</th>
+        <th>Default Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Instance Variable</td>
+        <td>These variables are declared inside a class but outside any method. Each instance (object) of the class has its own copy of the instance variable.</td>
+        <td><code>public class MyClass { int x; }</code></td>
+        <td>Accessible by all non-static methods and constructors within the class. Each object has its own copy of the variable.</td>
+        <td>Memory is allocated when an object is created.</td>
+        <td>Instance variables are given default values depending on their type (e.g., <code>0</code> for <code>int</code>, <code>null</code> for objects).</td>
+      </tr>
+      <tr>
+        <td>Class Variable (Static Variable)</td>
+        <td>These variables are declared with the <code>static</code> keyword. They belong to the class rather than instances of the class and are shared by all objects of that class.</td>
+        <td><code>public class MyClass { static int count; }</code></td>
+        <td>Accessible by static methods and non-static methods (using an object reference). Shared by all instances of the class.</td>
+        <td>Memory is allocated when the class is loaded into memory, not when objects are created.</td>
+        <td>Static variables also have default values (e.g., <code>0</code> for <code>int</code>, <code>null</code> for objects).</td>
+      </tr>
+      <tr>
+        <td>Local Variable</td>
+        <td>These variables are declared inside methods, constructors, or blocks. They are only accessible within the method, constructor, or block where they are declared.</td>
+        <td><code>public void myMethod() { int localVar; }</code></td>
+        <td>Accessible only within the method, constructor, or block where they are defined.</td>
+        <td>Memory is allocated when the method is called and deallocated when the method execution finishes.</td>
+        <td>Local variables must be initialized before use. They do not have default values.</td>
+      </tr>
+    </tbody>
+  </table>
+    </section>
+
+    <section>
+      <h2>Constructors in Java</h2>
+      <p>A constructor is a special method used to initialize objects. It is called when an object is created. There are two main types of constructors:</p>
+      <ul>
+        <li><strong>Default Constructor:</strong> A constructor provided by the compiler if no constructor is explicitly defined. It initializes instance variables to default values.</li>
+        <li><strong>Parameterized Constructor:</strong> A constructor that allows you to pass values to initialize instance variables with custom values when the object is created.</li>
+      </ul>
+
+      <p><strong>Differences Between Default and Parameterized Constructors:</strong></p>
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Default Constructor</th>
+            <th>Parameterized Constructor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Initialization</td>
+            <td>Initializes with default values (e.g., 0, null)</td>
+            <td>Initializes with specified values passed as arguments</td>
+          </tr>
+          <tr>
+            <td>Arguments</td>
+            <td>No arguments</td>
+            <td>Requires arguments</td>
+          </tr>
+          <tr>
+            <td>Example</td>
+            <td><code>public Car() { this.color = "Red"; }</code></td>
+            <td><code>public Car(String color) { this.color = color; }</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p><strong>Example:</strong></p>
+      <pre><code>
+// Default constructor
+public class Book {
+    String title;
+    String author;
+
+    public Book() {
+        title = "Unknown";
+        author = "Unknown";
+    }
+
+    // Parameterized constructor
+    public Book(String title, String author) {
+        this.title = title;
+        this.author = author;
+    }
+
+    void display() {
+        System.out.println("Title: " + title + ", Author: " + author);
+    }
+}
+      </code></pre>
+      <p>Here, the class `Book` has both a default and parameterized constructor.</p>
+    </section>
+
+    <section>
+        <h2>Methods in Java</h2>
+        <p>Methods in Java define the behavior of objects. They can accept input parameters and return a result. Methods are used to perform operations on data within an object.</p>
+     
+        <h2>Method Syntax in Java</h2>
+        <p>Methods in Java are blocks of code that perform a specific task. They are defined within a class and can have different signatures depending on whether they return a value and whether they take parameters.</p>
+  
+        <p><strong>General Syntax of a Method:</strong></p>
+        <pre><code>
+  returnType methodName(parameterList) {
+      // Method body
+  }
+        </code></pre>
+        <p>Where:</p>
+        <ul>
+          <li><strong>returnType:</strong> Specifies what type of value the method returns (e.g., <code>int</code>, <code>String</code>, <code>void</code> if it does not return anything).</li>
+          <li><strong>methodName:</strong> The name of the method.</li>
+          <li><strong>parameterList:</strong> A list of parameters (if any) the method accepts. If there are no parameters, you can leave the parentheses empty.</li>
+        </ul>
+      </section>
+  
+      <section>
+        <h2>1. Method with No Return Value and No Parameters</h2>
+        <p>This type of method doesn't return any value and does not accept any parameters.</p>
+        <pre><code>
+  public class MyClass {
+      // Method with no return value and no parameters
+      public void printMessage() {
+          System.out.println("Hello, this is a method with no return value and no parameters.");
+      }
+  
+      public static void main(String[] args) {
+          MyClass obj = new MyClass();
+          obj.printMessage(); // Calling the method
+      }
+  }
+        </code></pre>
+        <p>In the above example, the <code>printMessage</code> method does not return anything and does not require any parameters.</p>
+      </section>
+  
+      <section>
+        <h2>2. Method with No Return Value and With Parameters</h2>
+        <p>This type of method doesn't return any value but accepts parameters to perform its task.</p>
+        <pre><code>
+  public class MyClass {
+      // Method with no return value and parameters
+      public void displayMessage(String message) {
+          System.out.println(message);
+      }
+  
+      public static void main(String[] args) {
+          MyClass obj = new MyClass();
+          obj.displayMessage("This is a message with a parameter."); // Calling the method with a parameter
+      }
+  }
+        </code></pre>
+        <p>Here, the <code>displayMessage</code> method takes a <code>String</code> parameter and prints it. It doesn't return anything.</p>
+      </section>
+  
+      <section>
+        <h2>3. Method with Return Value and No Parameters</h2>
+        <p>This method returns a value but does not accept any parameters. It is useful when you want to return data from the method.</p>
+        <pre><code>
+  public class MyClass {
+      // Method with return value and no parameters
+      public int getNumber() {
+          return 42;
+      }
+  
+      public static void main(String[] args) {
+          MyClass obj = new MyClass();
+          int num = obj.getNumber(); // Calling the method and storing the returned value
+          System.out.println("Returned value: " + num); // Output: 42
+      }
+  }
+        </code></pre>
+        <p>In this example, the <code>getNumber</code> method returns an integer value, but does not take any parameters.</p>
+      </section>
+  
+      <section>
+        <h2>4. Method with Return Value and With Parameters</h2>
+        <p>This method returns a value and also takes parameters. It is useful when you need to perform some calculation or operation and return a result based on the input parameters.</p>
+        <pre><code>
+  public class MyClass {
+      // Method with return value and parameters
+      public int addNumbers(int a, int b) {
+          return a + b;
+      }
+  
+      public static void main(String[] args) {
+          MyClass obj = new MyClass();
+          int result = obj.addNumbers(5, 3); // Calling the method with parameters
+          System.out.println("The sum is: " + result); // Output: 8
+      }
+  }
+        </code></pre>
+        <p>Here, the <code>addNumbers</code> method takes two integers as parameters and returns their sum.</p>
+      </section>
+
+    <section> 
+      <p><strong>Different Method Signatures:</strong></p>
+
+      <ul>
+        <li><strong>Method Overloading:</strong> Multiple methods with the same name but different parameter types or numbers.</li>
+        <li><strong>Static Methods:</strong> Methods that belong to the class and can be called without creating an instance of the class.</li>
+        <li><strong>Non-static Methods:</strong> Methods that belong to an object and require an instance of the class to be called.</li>
+      </ul>
+
+      <p><strong>Example:</strong></p>
+      <pre><code>
+public class Calculator {
+    // Method overloading example
+    public int add(int num1, int num2) {
+        return num1 + num2;
+    }
+    public double add(double num1, double num2) {
+        return num1 + num2;
+    }
+
+    // Static method
+    public static void displayMessage() {
+        System.out.println("This is a static method");
+    }
+
+    // Non-static method
+    public void subtract(int num1, int num2) {
+        System.out.println("Result: " + (num1 - num2));
+    }
+
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        System.out.println(calc.add(5, 3)); // Output: 8
+        System.out.println(calc.add(5.5, 3.3)); // Output: 8.8
+        Calculator.displayMessage(); // Output: This is a static method
+        calc.subtract(10, 5); // Output: Result: 5
+    }
+}
+      </code></pre>
+      <p>In this example:</p>
+      <ul>
+        <li>The <code>add</code> method is overloaded to accept both <code>int</code> and <code>double</code> parameters.</li>
+        <li>The <code>displayMessage</code> method is static and called using the class name.</li>
+        <li>The <code>subtract</code> method is non-static and requires an instance of the class.</li>
+      </ul>
+    </section>
+
+    <section>
+        <h2>Static Methods vs Non-static Methods</h2>
+        <p>In Java, methods can either be <strong>static</strong> or <strong>non-static</strong>.</p>
+  
+        <h3>Static Methods</h3>
+        <p>A <strong>static</strong> method belongs to the class, rather than instances of the class. You can call a static method without creating an object of the class. Static methods are often used for utility or helper functions.</p>
+        <pre><code>
+  public class MyClass {
+      // Static method
+      public static void staticMethod() {
+          System.out.println("This is a static method.");
+      }
+  
+      public static void main(String[] args) {
+          MyClass.staticMethod(); // Calling static method without creating an object
+      }
+  }
+        </code></pre>
+        <p>The static method <code>staticMethod</code> is called directly on the class without needing to create an instance of the class.</p>
+  
+        <h3>Non-static Methods</h3>
+        <p>A <strong>non-static</strong> method belongs to an instance of the class. You need to create an object of the class to call a non-static method.</p>
+        <pre><code>
+  public class MyClass {
+      // Non-static method
+      public void nonStaticMethod() {
+          System.out.println("This is a non-static method.");
+      }
+  
+      public static void main(String[] args) {
+          MyClass obj = new MyClass();
+          obj.nonStaticMethod(); // Calling non-static method using an object
+      }
+  }
+        </code></pre>
+        <p>The non-static method <code>nonStaticMethod</code> is called using an instance of the class, which is <code>obj</code> in this case.</p>
+      </section>
+  
+
+    <section>
+      <h2>Blocks in Java</h2>
+      <p>In Java, there are three types of blocks:</p>
+      <ul>
+        <li><strong>Instance Block:</strong> Runs every time an object is created. It's used for common initialization tasks for every instance.</li>
+        <li><strong>Static Block:</strong> Runs only once when the class is loaded into memory. It is used for static initialization tasks.</li>
+        <li><strong>Local Block:</strong> Defined inside methods or constructors to limit the scope of variables to that block.</li>
+      </ul>
+
+      <h3>Instance Block:</h3>
+      <pre><code>
+public class Example {
+    {
+        // Instance Block
+        System.out.println("Instance Block: Object Created");
+    }
+
+    public static void main(String[] args) {
+        Example obj = new Example(); // Output: Instance Block: Object Created
+    }
+}
+      </code></pre>
+
+      <h3>Static Block:</h3>
+      <pre><code>
+public class StaticExample {
+    static {
+        // Static Block
+        System.out.println("Static Block: Class Loaded");
+    }
+
+    public static void main(String[] args) {
+        StaticExample obj = new StaticExample(); // Output: Static Block: Class Loaded
+    }
+}
+      </code></pre>
+
+      <h3>Local Block:</h3>
+      <pre><code>
+public class LocalBlockExample {
+    public void display() {
+        // Local Block
+        {
+            int x = 10;
+            System.out.println("Value of x: " + x);
+        }
+    }
+
+    public static void main(String[] args) {
+        LocalBlockExample obj = new LocalBlockExample();
+        obj.display(); // Output: Value of x: 10
+    }
+}
+      </code></pre>
+    </section>
+
+  </main>
+  <div id="footer-container"></div>
+  
+  <script src="../js/scripts.js"></script>
+</body>
+</html>

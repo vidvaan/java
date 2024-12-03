@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OOP Concepts in Java</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <!-- Placeholder for Header -->
+  <div id="header-container"></div>
+
+  <main>
+    <section>
+      <h2>Object-Oriented Programming (OOP) Concepts in Java</h2>
+      <p>Java is an object-oriented programming language that follows key OOP principles: Encapsulation, Inheritance, Polymorphism, and Abstraction.</p>
+
+      <h3>1. Encapsulation</h3>
+      <p>Encapsulation is the process of bundling data (variables) and methods that operate on the data into a single unit, i.e., a class. It helps achieve data hiding and keeps the internal workings of an object hidden from the outside world.</p>
+      <h4>Data Hiding</h4>
+      <p>Data hiding is achieved by declaring variables as private, making them inaccessible from outside the class. Access to these variables is provided through public setter and getter methods.</p>
+      <pre><code>
+public class Employee {
+    private String name; // Private variable
+
+    // Setter
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // Getter
+    public String getName() {
+        return this.name;
+    }
+}
+      </code></pre>
+
+      <h4>Constructors</h4>
+      <p>Constructors are special methods used to initialize objects. A constructor is called when an object of a class is created.</p>
+      <pre><code>
+public class Employee {
+    private String name;
+
+    // Constructor
+    public Employee(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+
+Employee emp = new Employee("John");
+System.out.println(emp.getName()); // Output: John
+      </code></pre>
+
+        <h3>The 'this' Keyword in Java</h3>
+        <p>The <code>this</code> keyword is a reference variable in Java that refers to the current object instance. It can be used in various contexts to refer to the instance of the current class.</p>
+  
+        <h3>1. Referring to Current Class Instance Variables</h3>
+        <p>When instance variables and method parameters have the same name, the <code>this</code> keyword is used to distinguish the instance variables from the parameters.</p>
+        <pre><code>
+  class Employee {
+      private String name;
+  
+      // Constructor
+      public Employee(String name) {
+          this.name = name; // 'this.name' refers to the instance variable
+      }
+  
+      public String getName() {
+          return this.name; // 'this.name' is referring to the instance variable
+      }
+  
+      public static void main(String[] args) {
+          Employee emp = new Employee("John");
+          System.out.println(emp.getName()); // Output: John
+      }
+  }
+        </code></pre>
+        <p>In the example above, the <code>this</code> keyword helps to differentiate the instance variable <code>name</code> from the constructor parameter <code>name</code>.</p>
+  
+        <h3>2. Calling Current Class Methods</h3>
+        <p>The <code>this</code> keyword can also be used to call other methods in the current class. It's not mandatory to use <code>this</code> to call methods, but it can be useful for clarity, especially when method names are the same as variables or when calling from a constructor.</p>
+        <pre><code>
+  class Employee {
+      private String name;
+  
+      // Constructor
+      public Employee(String name) {
+          this.name = name; // Initialize the name using the constructor parameter
+          this.display();    // Call another method from the same class
+      }
+  
+      // Method to display the name
+      public void display() {
+          System.out.println("Employee Name: " + this.name);
+      }
+  
+      public static void main(String[] args) {
+          Employee emp = new Employee("Alice");
+      }
+  }
+        </code></pre>
+        <p>In the example above, the <code>this.display()</code> call within the constructor invokes the <code>display()</code> method of the current class, which outputs the name of the employee.</p>
+  
+        <h3>3. Calling Constructors from One Another</h3>
+        <p>In Java, you can call one constructor from another constructor within the same class using <code>this</code>. This is known as constructor chaining.</p>
+        <pre><code>
+  class Employee {
+      private String name;
+      private int age;
+  
+      // Constructor with two parameters
+      public Employee(String name, int age) {
+          this.name = name;
+          this.age = age;
+      }
+  
+      // Constructor with one parameter, calling the two-parameter constructor
+      public Employee(String name) {
+          this(name, 30); // Calling the two-parameter constructor with a default age value
+      }
+  
+      public void display() {
+          System.out.println("Name: " + this.name + ", Age: " + this.age);
+      }
+  
+      public static void main(String[] args) {
+          Employee emp1 = new Employee("John", 25);
+          emp1.display(); // Output: Name: John, Age: 25
+  
+          Employee emp2 = new Employee("Alice");
+          emp2.display(); // Output: Name: Alice, Age: 30
+      }
+  }
+        </code></pre>
+        <p>In the example above, the constructor with one parameter calls the constructor with two parameters using <code>this(name, 30)</code>, which demonstrates constructor chaining. This allows for the reuse of code within constructors.</p>
+  
+      
+
+      <h3>2. Inheritance</h3>
+      <p>Inheritance is a mechanism where one class acquires the properties and behaviors of another class. This helps in code reuse and hierarchical classification.</p>
+
+      <h4>Types of Inheritance</h4>
+      <ul>
+        <li><strong>Single Inheritance:</strong> A class inherits from only one superclass.</li>
+        <li><strong>Multilevel Inheritance:</strong> A class inherits from another class, and that class inherits from another, forming a chain.</li>
+        <li><strong>Hierarchical Inheritance:</strong> A single class is inherited by multiple subclasses.</li>
+      </ul>
+
+      <h4>Why Java Does Not Support Multiple Inheritance</h4>
+      <p>Java does not support multiple inheritance (a class inheriting from more than one class) to avoid ambiguity. If two superclasses have the same method, the subclass won't know which one to inherit. This is resolved through interfaces.</p>
+
+      <h3>Uses of the 'super' Keyword in Java</h3>
+      <p>The <code>super</code> keyword in Java is used to refer to the immediate parent class of the current object. It can be used in various ways to interact with parent class members, including instance variables, methods, and constructors.</p>
+
+      <h3>1. Referencing Parent Class Instance Variables</h3>
+      <p>The <code>super</code> keyword can be used to access instance variables in the parent class, especially when there is a name conflict with the subclass instance variables.</p>
+      <pre><code>
+class Animal {
+    protected String name = "Animal";
+
+    public void display() {
+        System.out.println("Animal: " + name);
+    }
+}
+
+class Dog extends Animal {
+    private String name = "Dog";
+
+    public void display() {
+        System.out.println("Dog: " + name);
+        System.out.println("Parent class name: " + super.name); // Access parent class variable
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog();
+        dog.display();
+    }
+}
+      </code></pre>
+      <p>Output:</p>
+      <pre><code>
+Dog: Dog
+Parent class name: Animal
+      </code></pre>
+      <p>In this example, the <code>super.name</code> refers to the parent class's <code>name</code> variable, while the <code>name</code> in the <code>Dog</code> class refers to the subclass's own instance variable.</p>
+
+      <h3>2. Calling Parent Class Methods</h3>
+      <p>The <code>super</code> keyword is used to call methods from the parent class, especially when the method is overridden in the subclass.</p>
+      <pre><code>
+class Animal {
+    public void sound() {
+        System.out.println("Animal makes sound");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    public void sound() {
+        System.out.println("Dog barks");
+        super.sound(); // Call parent class method
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog();
+        dog.sound();
+    }
+}
+      </code></pre>
+      <p>Output:</p>
+      <pre><code>
+Dog barks
+Animal makes sound
+      </code></pre>
+      <p>In this example, the <code>super.sound()</code> calls the <code>sound()</code> method from the parent class <code>Animal</code> after executing the overridden method in the subclass <code>Dog</code>.</p>
+
+      <h3>3. Calling Parent Class Constructor</h3>
+      <p>The <code>super</code> keyword is used to call the constructor of the parent class. This is useful when the parent class constructor needs to be executed before the subclass constructor.</p>
+      <pre><code>
+class Animal {
+    public Animal(String name) {
+        System.out.println("Animal's name: " + name);
+    }
+}
+
+class Dog extends Animal {
+    public Dog(String name) {
+        super(name); // Calling parent class constructor
+        System.out.println("Dog's name: " + name);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog("Buddy");
+    }
+}
+      </code></pre>
+      <p>Output:</p>
+      <pre><code>
+Animal's name: Buddy
+Dog's name: Buddy
+      </code></pre>
+      <p>In this example, the <code>super(name)</code> call invokes the constructor of the <code>Animal</code> class before the subclass constructor executes.</p>
+
+      <h3>Difference Between <code>this</code> and <code>super</code></h3>
+      <p><code>this</code> and <code>super</code> both refer to objects in Java, but they serve different purposes:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>this</th>
+            <th>super</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Refers to the current object instance of the class in which it is used.</td>
+            <td>Refers to the immediate parent class of the object.</td>
+          </tr>
+          <tr>
+            <td>Used to access the current class's variables, methods, and constructors.</td>
+            <td>Used to access the parent class's methods and variables, and to call parent class constructors.</td>
+          </tr>
+          <tr>
+            <td>Can be used to differentiate between method parameters and instance variables when they have the same name.</td>
+            <td>Used to invoke overridden methods or constructors from the parent class.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>3. Polymorphism</h3>
+      <p>Polymorphism allows one object to take on many forms. It enables one interface to be used for a general class of actions.</p>
+
+      <h4>Method Overloading</h4>
+      <p>Method overloading is when multiple methods have the same name but different parameter lists. It is determined at compile time.</p>
+      <pre><code>
+class MathOperation {
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    public double add(double a, double b) {
+        return a + b;
+    }
+}
+
+MathOperation operation = new MathOperation();
+System.out.println(operation.add(2, 3));   // Output: 5
+System.out.println(operation.add(2.5, 3.5)); // Output: 6.0
+      </code></pre>
+
+      <h4>Method Overriding</h4>
+      <p>Method overriding occurs when a subclass provides a specific implementation of a method already defined in its superclass. It is determined at runtime.</p>
+      <pre><code>
+class Animal {
+    public void sound() {
+        System.out.println("Animal makes sound");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    public void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+Animal obj = new Dog();
+obj.sound(); // Output: Dog barks
+      </code></pre>
+
+      <h3>4. Abstraction</h3>
+      <p>Abstraction is the process of hiding the implementation details and showing only the functionality to the user. Java provides abstraction through abstract classes and interfaces.</p>
+
+      <h4>Abstract Class</h4>
+      <p>An abstract class is a class that cannot be instantiated and may contain abstract methods (without implementation) as well as concrete methods (with implementation).</p>
+      <pre><code>
+abstract class Animal {
+    abstract void sound(); // Abstract method
+
+    public void eat() { // Concrete method
+        System.out.println("Eating...");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Barking...");
+    }
+}
+
+Animal animal = new Dog();
+animal.sound(); // Output: Barking...
+      </code></pre>
+
+      <h4>Interface</h4>
+      <p>An interface is a contract that defines a set of methods without providing implementations. A class that implements an interface must provide implementations for all of its methods.</p>
+      <pre><code>
+interface Animal {
+    void sound();
+}
+
+class Dog implements Animal {
+    @Override
+    public void sound() {
+        System.out.println("Barking...");
+    }
+}
+
+Animal animal = new Dog();
+animal.sound(); // Output: Barking...
+      </code></pre>
+
+      <h4>Difference Between Abstract Class and Interface</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Abstract Class</th>
+            <th>Interface</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Can have both abstract and concrete methods.</td>
+            <td>Can only have abstract methods (prior to Java 8, but can have default methods in Java 8+).</td>
+          </tr>
+          <tr>
+            <td>Can have constructors.</td>
+            <td>Cannot have constructors.</td>
+          </tr>
+          <tr>
+            <td>Used for "is-a" relationship.</td>
+            <td>Used for "can-do" relationship.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>Marker Interface</h4>
+      <p>A marker interface is an interface with no methods or fields. It is used to mark a class for a specific behavior.</p>
+      <pre><code>
+interface Serializable {}
+
+class Person implements Serializable {
+    private String name;
+
+    public Person(String name) {
+        this.name = name;
+    }
+}
+      </code></pre>
+
+    </section>
+    <section>
+        <h2>Access Modifiers in Java</h2>
+        <p>In Java, access modifiers are used to control the visibility and accessibility of classes, methods, and variables. The four main access modifiers in Java are:</p>
+        <ul>
+          <li><strong>private</strong></li>
+          <li><strong>default</strong> (no modifier)</li>
+          <li><strong>protected</strong></li>
+          <li><strong>public</strong></li>
+        </ul>
+  
+        <h3>1. <code>private</code> Access Modifier</h3>
+        <p>The <code>private</code> access modifier restricts access to members (variables and methods) within the same class only. It cannot be accessed from outside the class.</p>
+        <pre><code>
+  class MyClass {
+      private int number = 10;
+  
+      private void display() {
+          System.out.println("Number: " + number);
+      }
+  
+      public static void main(String[] args) {
+          MyClass obj = new MyClass();
+          // System.out.println(obj.number); // Error: number has private access
+          // obj.display(); // Error: display() has private access
+      }
+  }
+        </code></pre>
+        <p>In this example, the variable <code>number</code> and method <code>display()</code> are private and cannot be accessed outside the class.</p>
+  
+        <h3>2. <code>default</code> (No Modifier)</h3>
+        <p>If no access modifier is specified, it is considered the <code>default</code> access modifier. Members with default access can only be accessed within classes in the same package.</p>
+        <pre><code>
+  class MyClass {
+      int number = 10; // default access modifier
+  
+      void display() { // default access modifier
+          System.out.println("Number: " + number);
+      }
+  }
+  
+  class AnotherClass {
+      public static void main(String[] args) {
+          MyClass obj = new MyClass();
+          System.out.println(obj.number); // Accessible because it's in the same package
+          obj.display(); // Accessible because it's in the same package
+      }
+  }
+        </code></pre>
+        <p>In this example, the variable <code>number</code> and method <code>display()</code> have default access and can be accessed by other classes in the same package.</p>
+  
+        <h3>3. <code>protected</code> Access Modifier</h3>
+        <p>The <code>protected</code> access modifier allows access to members from the same package and subclasses (even if they are in a different package).</p>
+        <pre><code>
+  class Animal {
+      protected String sound = "Roar"; // protected variable
+  
+      protected void makeSound() { // protected method
+          System.out.println("Sound: " + sound);
+      }
+  }
+  
+  class Dog extends Animal {
+      public static void main(String[] args) {
+          Dog dog = new Dog();
+          System.out.println(dog.sound); // Accessible because Dog is a subclass of Animal
+          dog.makeSound(); // Accessible because Dog is a subclass of Animal
+      }
+  }
+        </code></pre>
+        <p>In this example, the <code>sound</code> variable and <code>makeSound()</code> method are protected and can be accessed within the subclass <code>Dog</code>, even though it is in a different class.</p>
+  
+        <h3>4. <code>public</code> Access Modifier</h3>
+        <p>The <code>public</code> access modifier allows access to members from anywhere, regardless of package or class.</p>
+        <pre><code>
+  class MyClass {
+      public int number = 10; // public variable
+  
+      public void display() { // public method
+          System.out.println("Number: " + number);
+      }
+  }
+  
+  class AnotherClass {
+      public static void main(String[] args) {
+          MyClass obj = new MyClass();
+          System.out.println(obj.number); // Accessible because it's public
+          obj.display(); // Accessible because it's public
+      }
+  }
+        </code></pre>
+        <p>In this example, the variable <code>number</code> and method <code>display()</code> are public and can be accessed from any class, even if it's in a different package.</p>
+  
+        <h3>Summary of Access Modifiers</h3>
+        <table border="1">
+          <thead>
+            <tr>
+              <th>Access Modifier</th>
+              <th>Access Level</th>
+              <th>Can Be Accessed By</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>private</code></td>
+              <td>Members are accessible only within the same class.</td>
+              <td>Only the class itself.</td>
+            </tr>
+            <tr>
+              <td><code>default</code></td>
+              <td>Members are accessible within the same package.</td>
+              <td>Classes in the same package.</td>
+            </tr>
+            <tr>
+              <td><code>protected</code></td>
+              <td>Members are accessible within the same package and subclasses.</td>
+              <td>Classes in the same package and subclasses (even if they are in different packages).</td>
+            </tr>
+            <tr>
+              <td><code>public</code></td>
+              <td>Members are accessible from anywhere.</td>
+              <td>Any class, regardless of package.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+  </main>
+
+  <!-- Placeholder for Footer -->
+  <div id="footer-container"></div>
+
+  <script src="../js/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Types in Java</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 8px;
+    }
+    th {
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <!-- Placeholder for Header -->
+  <div id="header-container"></div>
+
+  <main>
+    <section>
+      <h2>Data Types in Java</h2>
+      <p>In Java, data types specify what kind of data a variable can hold. Java provides two types of data types: **primitive** and **non-primitive**.</p>
+
+      <h3>1. Primitive Data Types</h3>
+      <p>Primitive data types are the most basic data types in Java. They are predefined by Java and represent simple values. There are 8 primitive data types in Java:</p>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Data Type</th>
+            <th>Size</th>
+            <th>Default Value</th>
+            <th>Range</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>byte</td>
+            <td>1 byte</td>
+            <td>0</td>
+            <td>-128 to 127</td>
+          </tr>
+          <tr>
+            <td>short</td>
+            <td>2 bytes</td>
+            <td>0</td>
+            <td>-32,768 to 32,767</td>
+          </tr>
+          <tr>
+            <td>int</td>
+            <td>4 bytes</td>
+            <td>0</td>
+            <td>-2^31 to 2^31-1</td>
+          </tr>
+          <tr>
+            <td>long</td>
+            <td>8 bytes</td>
+            <td>0L</td>
+            <td>-2^63 to 2^63-1</td>
+          </tr>
+          <tr>
+            <td>float</td>
+            <td>4 bytes</td>
+            <td>0.0f</td>
+            <td>-3.4e38 to 3.4e38</td>
+          </tr>
+          <tr>
+            <td>double</td>
+            <td>8 bytes</td>
+            <td>0.0d</td>
+            <td>-1.7e308 to 1.7e308</td>
+          </tr>
+          <tr>
+            <td>char</td>
+            <td>2 bytes</td>
+            <td>'\u0000'</td>
+            <td>0 to 65,535 (Unicode characters)</td>
+          </tr>
+          <tr>
+            <td>boolean</td>
+            <td>1 bit</td>
+            <td>false</td>
+            <td>true or false</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2. Non-Primitive Data Types</h3>
+      <p>Non-primitive data types are more complex and are objects in Java. Unlike primitive data types, non-primitive types can store multiple values and come with built-in methods. Some examples of non-primitive types include:</p>
+      
+      <ul>
+        <li><strong>String</strong> - A sequence of characters. E.g., <code>String name = "John";</code></li>
+        <li><strong>Array</strong> - A collection of similar types of elements. E.g., <code>int[] numbers = {1, 2, 3};</code></li>
+        <li><strong>Class</strong> - Used to define the blueprint of objects. E.g., <code>class Car { int speed; }</code></li>
+        <li><strong>Interface</strong> - An abstract type used to define a contract for classes. E.g., <code>interface Drive { void drive(); }</code></li>
+      </ul>
+
+      <h3>3. Wrapper Classes</h3>
+      <p>Wrapper classes are the object representation of primitive data types. Each primitive type has a corresponding wrapper class in Java. These wrapper classes provide useful methods for converting between types, comparing values, etc. The wrapper classes are part of the <strong>java.lang</strong> package.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Primitive Type</th>
+            <th>Wrapper Class</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>byte</td>
+            <td>Byte</td>
+          </tr>
+          <tr>
+            <td>short</td>
+            <td>Short</td>
+          </tr>
+          <tr>
+            <td>int</td>
+            <td>Integer</td>
+          </tr>
+          <tr>
+            <td>long</td>
+            <td>Long</td>
+          </tr>
+          <tr>
+            <td>float</td>
+            <td>Float</td>
+          </tr>
+          <tr>
+            <td>double</td>
+            <td>Double</td>
+          </tr>
+          <tr>
+            <td>char</td>
+            <td>Character</td>
+          </tr>
+          <tr>
+            <td>boolean</td>
+            <td>Boolean</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>Example of Using All Data Types in One Program</h4>
+      <pre><code>
+public class AllDataTypesExample {
+    public static void main(String[] args) {
+        // Primitive types
+        byte b = 100;
+        short s = 2000;
+        int i = 100000;
+        long l = 1000000000L;
+        float f = 3.14f;
+        double d = 3.14159;
+        char c = 'A';
+        boolean bool = true;
+        
+        // Wrapper classes
+        Byte bWrapper = b;
+        Short sWrapper = s;
+        Integer iWrapper = i;
+        Long lWrapper = l;
+        Float fWrapper = f;
+        Double dWrapper = d;
+        Character cWrapper = c;
+        Boolean boolWrapper = bool;
+        
+        // Displaying values
+        System.out.println("Byte: " + b);
+        System.out.println("Short: " + s);
+        System.out.println("Int: " + i);
+        System.out.println("Long: " + l);
+        System.out.println("Float: " + f);
+        System.out.println("Double: " + d);
+        System.out.println("Char: " + c);
+        System.out.println("Boolean: " + bool);
+        
+        System.out.println("\nWrapper class values:");
+        System.out.println("Byte Wrapper: " + bWrapper);
+        System.out.println("Short Wrapper: " + sWrapper);
+        System.out.println("Integer Wrapper: " + iWrapper);
+        System.out.println("Long Wrapper: " + lWrapper);
+        System.out.println("Float Wrapper: " + fWrapper);
+        System.out.println("Double Wrapper: " + dWrapper);
+        System.out.println("Character Wrapper: " + cWrapper);
+        System.out.println("Boolean Wrapper: " + boolWrapper);
+    }
+}
+      </code></pre>
+
+      <h3>4. Program to Get Range of Data Types in Java</h3>
+      <p>The following program will print the range of various primitive data types in Java:</p>
+      <pre><code>
+public class DataTypesRange {
+    public static void main(String[] args) {
+        System.out.println("Byte range: " + Byte.MIN_VALUE + " to " + Byte.MAX_VALUE);
+        System.out.println("Short range: " + Short.MIN_VALUE + " to " + Short.MAX_VALUE);
+        System.out.println("Integer range: " + Integer.MIN_VALUE + " to " + Integer.MAX_VALUE);
+        System.out.println("Long range: " + Long.MIN_VALUE + " to " + Long.MAX_VALUE);
+        System.out.println("Float range: " + Float.MIN_VALUE + " to " + Float.MAX_VALUE);
+        System.out.println("Double range: " + Double.MIN_VALUE + " to " + Double.MAX_VALUE);
+        System.out.println("Character range: " + (int) Character.MIN_VALUE + " to " + (int) Character.MAX_VALUE);
+        System.out.println("Boolean: " + Boolean.FALSE + " or " + Boolean.TRUE);
+    }
+}
+      </code></pre>
+
+      <p>This program uses Java's predefined constants to print the minimum and maximum values for primitive data types.</p>
+    </section>
+    <section>
+        <h2>Data Types and Type Conversions in Java</h2>
+        <p>Java provides different ways of converting between primitive types, wrapper classes, and other types. Let's go through some of the common conversions.</p>
+      
+        <h3>1. Primitive to Wrapper Conversion (Autoboxing)</h3>
+        <p>Autoboxing is the automatic conversion of primitive types to their corresponding wrapper classes. Java handles this internally when you assign a primitive value to a wrapper class object.</p>
+        
+        <pre><code>
+      public class PrimitiveToWrapper {
+          public static void main(String[] args) {
+              int i = 10;
+              // Primitive to Wrapper (Autoboxing)
+              Integer integerObj = i; // Autoboxing
+              System.out.println("Primitive to Wrapper: " + integerObj);
+          }
+      }
+        </code></pre>
+      
+        <h3>2. Wrapper to Primitive Conversion (Unboxing)</h3>
+        <p>Unboxing is the automatic conversion of wrapper class objects to their corresponding primitive types.</p>
+        
+        <pre><code>
+      public class WrapperToPrimitive {
+          public static void main(String[] args) {
+              Integer integerObj = 100;
+              // Wrapper to Primitive (Unboxing)
+              int i = integerObj; // Unboxing
+              System.out.println("Wrapper to Primitive: " + i);
+          }
+      }
+        </code></pre>
+      
+        <h3>3. String to Wrapper Conversion</h3>
+        <p>To convert a String to a wrapper type, you can use the valueOf() method of the wrapper class.</p>
+        
+        <pre><code>
+      public class StringToWrapper {
+          public static void main(String[] args) {
+              String str = "123";
+              // String to Wrapper using valueOf()
+              Integer integerObj = Integer.valueOf(str);
+              System.out.println("String to Wrapper: " + integerObj);
+          }
+      }
+        </code></pre>
+      
+        <h3>4. Wrapper to String Conversion</h3>
+        <p>To convert a wrapper object to a String, you can call the toString() method on the wrapper object.</p>
+        
+        <pre><code>
+      public class WrapperToString {
+          public static void main(String[] args) {
+              Integer integerObj = 100;
+              // Wrapper to String
+              String str = integerObj.toString();
+              System.out.println("Wrapper to String: " + str);
+          }
+      }
+        </code></pre>
+
+        <h3>5. Primitive to String Conversion</h3>
+        <p>To convert a primitive type to a String, you can use the String.valueOf() method or simply concatenate the primitive value with an empty string.</p>
+        
+        <pre><code>
+      public class PrimitiveToString {
+          public static void main(String[] args) {
+              int i = 10;
+              // Primitive to String
+              String str = String.valueOf(i);
+              System.out.println("Primitive to String: " + str);
+          }
+      }
+        </code></pre>
+      
+        <h3>6. String to Primitive Conversion</h3>
+        <p>To convert a String to a primitive type, you can use the <code>parse<Type>()</code> method of the corresponding wrapper class.</p>
+        
+        <pre><code>
+      public class StringToPrimitive {
+          public static void main(String[] args) {
+              String str = "123";
+              // String to Primitive using parse<Type>()
+              int i = Integer.parseInt(str);
+              System.out.println("String to Primitive: " + i);
+          }
+      }
+        </code></pre>
+      
+        <h3>7. Summary Table of Conversion Methods</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Conversion</th>
+              <th>Method/Approach</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Primitive to Wrapper</td>
+              <td>Autoboxing (e.g., <code>Integer i = 10;</code>)</td>
+              <td><code>int i = 10; Integer integerObj = i;</code></td>
+            </tr>
+            <tr>
+              <td>Wrapper to Primitive</td>
+              <td>Unboxing (e.g., <code>int i = integerObj;</code>)</td>
+              <td><code>Integer integerObj = 100; int i = integerObj;</code></td>
+            </tr>
+            <tr>
+              <td>String to Wrapper</td>
+              <td><code>Wrapper.valueOf(String)</code></td>
+              <td><code>Integer integerObj = Integer.valueOf("123");</code></td>
+            </tr>
+            <tr>
+              <td>Wrapper to String</td>
+              <td><code>Wrapper.toString()</code></td>
+              <td><code>String str = integerObj.toString();</code></td>
+            </tr>
+            <tr>
+                <td>Primitive to String</td>
+                <td><code>String.valueOf(primitive)</code></td>
+                <td><code>String str = String.valueOf(10);</code></td>
+              </tr>
+            <tr>
+              <td>String to Primitive</td>
+              <td><code>parse<Type>(String)</code></td>
+              <td><code>int i = Integer.parseInt("123");</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      
+        <h2>Type Casting in Java</h2>
+        <p>Type casting is the process of converting one data type to another. In Java, there are two main types of type casting:</p>
+        <ul>
+          <li><strong>Implicit Casting (Widening)</strong>: Automatically performed by Java when a smaller type is converted into a larger type.</li>
+          <li><strong>Explicit Casting (Narrowing)</strong>: Done manually by the programmer when a larger type is converted into a smaller type.</li>
+        </ul>
+  
+        <h3>1. Implicit Casting (Widening)</h3>
+        <p>Implicit casting happens when you assign a smaller data type to a larger data type. This type of casting is done automatically by the Java compiler because there is no risk of losing data.</p>
+  
+        <pre><code>
+  public class ImplicitCasting {
+      public static void main(String[] args) {
+          int intVar = 100;
+          // Implicit casting: int to long
+          long longVar = intVar; 
+          System.out.println("Implicit Casting (int to long): " + longVar);
+      }
+  }
+        </code></pre>
+  
+        <h3>2. Explicit Casting (Narrowing)</h3>
+        <p>Explicit casting requires the programmer to manually cast a larger type to a smaller type. Since data might be lost in this type of casting, Java requires explicit casting using parentheses.</p>
+  
+        <pre><code>
+  public class ExplicitCasting {
+      public static void main(String[] args) {
+          double doubleVar = 10.75;
+          // Explicit casting: double to int
+          int intVar = (int) doubleVar; 
+          System.out.println("Explicit Casting (double to int): " + intVar);
+      }
+  }
+        </code></pre>
+  
+        <h3>3. Upcasting and Downcasting (Object Casting)</h3>
+        <p>Upcasting and downcasting involve casting between class hierarchies. Upcasting occurs when a subclass object is assigned to a superclass reference, and downcasting occurs when a superclass reference is cast back to a subclass object.</p>
+  
+        <h4>Upcasting</h4>
+        <p>Upcasting is the process of assigning a subclass object to a superclass reference variable. It is done implicitly and does not require explicit casting.</p>
+  
+        <pre><code>
+  class Animal {
+      void sound() {
+          System.out.println("Animal makes a sound");
+      }
+  }
+  
+  class Dog extends Animal {
+      void sound() {
+          System.out.println("Dog barks");
+      }
+  }
+  
+  public class UpcastingExample {
+      public static void main(String[] args) {
+          Animal animal = new Dog(); // Upcasting
+          animal.sound(); // Calls Dog's sound method
+      }
+  }
+        </code></pre>
+  
+        <h4>Downcasting</h4>
+        <p>Downcasting is the process of converting a superclass reference back into a subclass object. This requires explicit casting and can throw a <code>ClassCastException</code> if not done carefully.</p>
+  
+        <pre><code>
+  class Animal {
+      void sound() {
+          System.out.println("Animal makes a sound");
+      }
+  }
+  
+  class Dog extends Animal {
+      void sound() {
+          System.out.println("Dog barks");
+      }
+  }
+  
+  public class DowncastingExample {
+      public static void main(String[] args) {
+          Animal animal = new Dog(); // Upcasting
+          Dog dog = (Dog) animal; // Downcasting (Explicit casting)
+          dog.sound(); // Calls Dog's sound method
+      }
+  }
+        </code></pre>
+  
+        <h3>4. Summary Table of Type Casting in Java</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Type of Casting</th>
+              <th>Description</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Implicit Casting (Widening)</td>
+              <td>Automatically performed when a smaller type is assigned to a larger type.</td>
+              <td><code>int x = 5; long y = x;</code></td>
+            </tr>
+            <tr>
+              <td>Explicit Casting (Narrowing)</td>
+              <td>Requires explicit casting when a larger type is assigned to a smaller type.</td>
+              <td><code>double x = 10.5; int y = (int) x;</code></td>
+            </tr>
+            <tr>
+              <td>Upcasting</td>
+              <td>Assigning a subclass object to a superclass reference variable (implicit).</td>
+              <td><code>Dog dog = new Dog(); Animal animal = dog;</code></td>
+            </tr>
+            <tr>
+              <td>Downcasting</td>
+              <td>Assigning a superclass reference variable back to a subclass object (explicit).</td>
+              <td><code>Animal animal = new Dog(); Dog dog = (Dog) animal;</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      
+  </main>
+
+  <!-- Placeholder for Footer -->
+  <div id="footer-container"></div>
+  
+  <script src="../js/scripts.js"></script>
+</body>
+</html>

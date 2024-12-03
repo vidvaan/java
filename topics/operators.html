@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operators in Java</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <!-- Placeholder for Header -->
+  <div id="header-container"></div>
+
+  <main>
+    <section>
+      <h2>Operators in Java</h2>
+      <p>Operators are special symbols or keywords used to perform operations on variables and values in Java. They are categorized based on their functionality.</p>
+
+      <h3>1. Arithmetic Operators</h3>
+      <p>Used for mathematical operations.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Operator</th>
+            <th>Description</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>+</td>
+            <td>Addition</td>
+            <td><code>a + b</code></td>
+          </tr>
+          <tr>
+            <td>-</td>
+            <td>Subtraction</td>
+            <td><code>a - b</code></td>
+          </tr>
+          <tr>
+            <td>*</td>
+            <td>Multiplication</td>
+            <td><code>a * b</code></td>
+          </tr>
+          <tr>
+            <td>/</td>
+            <td>Division</td>
+            <td><code>a / b</code></td>
+          </tr>
+          <tr>
+            <td>%</td>
+            <td>Modulus</td>
+            <td><code>a % b</code></td>
+          </tr>
+        </tbody>
+      </table>
+      <pre><code>
+public class ArithmeticOperators {
+    public static void main(String[] args) {
+        int a = 10, b = 5;
+        System.out.println("Addition: " + (a + b));
+        System.out.println("Subtraction: " + (a - b));
+        System.out.println("Multiplication: " + (a * b));
+        System.out.println("Division: " + (a / b));
+        System.out.println("Modulus: " + (a % b));
+    }
+}
+      </code></pre>
+
+      <h3>2. Relational Operators</h3>
+      <p>Used to compare values.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Operator</th>
+            <th>Description</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>==</td>
+            <td>Equal to</td>
+            <td><code>a == b</code></td>
+          </tr>
+          <tr>
+            <td>!=</td>
+            <td>Not equal to</td>
+            <td><code>a != b</code></td>
+          </tr>
+          <tr>
+            <td>&gt;</td>
+            <td>Greater than</td>
+            <td><code>a &gt; b</code></td>
+          </tr>
+          <tr>
+            <td>&lt;</td>
+            <td>Less than</td>
+            <td><code>a &lt; b</code></td>
+          </tr>
+          <tr>
+            <td>&gt;=</td>
+            <td>Greater than or equal to</td>
+            <td><code>a &gt;= b</code></td>
+          </tr>
+          <tr>
+            <td>&lt;=</td>
+            <td>Less than or equal to</td>
+            <td><code>a &lt;= b</code></td>
+          </tr>
+        </tbody>
+      </table>
+      <pre><code>
+public class RelationalOperators {
+    public static void main(String[] args) {
+        int a = 10, b = 5;
+        System.out.println("Equal to: " + (a == b));
+        System.out.println("Not equal to: " + (a != b));
+        System.out.println("Greater than: " + (a > b));
+        System.out.println("Less than: " + (a < b));
+        System.out.println("Greater than or equal to: " + (a >= b));
+        System.out.println("Less than or equal to: " + (a <= b));
+    }
+}
+      </code></pre>
+
+      <h3>3. Logical Operators</h3>
+      <p>Used to perform logical operations.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Operator</th>
+            <th>Description</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>&amp;&amp;</td>
+            <td>Logical AND</td>
+            <td><code>a &gt; b &amp;&amp; a &gt; 0</code></td>
+          </tr>
+          <tr>
+            <td>||</td>
+            <td>Logical OR</td>
+            <td><code>a &gt; b || b &gt; 0</code></td>
+          </tr>
+          <tr>
+            <td>!</td>
+            <td>Logical NOT</td>
+            <td><code>!(a &gt; b)</code></td>
+          </tr>
+        </tbody>
+      </table>
+      <pre><code>
+public class LogicalOperators {
+    public static void main(String[] args) {
+        int a = 10, b = 5;
+        System.out.println("Logical AND: " + (a > b && a > 0));
+        System.out.println("Logical OR: " + (a > b || b > 0));
+        System.out.println("Logical NOT: " + !(a > b));
+    }
+}
+      </code></pre>
+
+      <h3>4. Assignment Operators</h3>
+      <p>Used to assign values to variables.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Operator</th>
+            <th>Description</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>=</td>
+            <td>Simple assignment</td>
+            <td><code>int a = 10;</code></td>
+          </tr>
+          <tr>
+            <td>+=</td>
+            <td>Add and assign</td>
+            <td><code>a += 5;  // Equivalent to a = a + 5;</code></td>
+          </tr>
+          <tr>
+            <td>-=</td>
+            <td>Subtract and assign</td>
+            <td><code>a -= 3;  // Equivalent to a = a - 3;</code></td>
+          </tr>
+          <tr>
+            <td>*=</td>
+            <td>Multiply and assign</td>
+            <td><code>a *= 2;  // Equivalent to a = a * 2;</code></td>
+          </tr>
+          <tr>
+            <td>/=</td>
+            <td>Divide and assign</td>
+            <td><code>a /= 2;  // Equivalent to a = a / 2;</code></td>
+          </tr>
+          <tr>
+            <td>%=</td>
+            <td>Modulus and assign</td>
+            <td><code>a %= 3;  // Equivalent to a = a % 3;</code></td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <pre><code>
+public class AssignmentOperators {
+    public static void main(String[] args) {
+        int a = 10, b = 5;
+        a += b; // a = a + b
+        System.out.println("Add and assign: " + a);
+        a -= b; // a = a - b
+        System.out.println("Subtract and assign: " + a);
+        a *= b; // a = a * b
+        System.out.println("Multiply and assign: " + a);
+    }
+}
+      </code></pre>
+
+      <h3>5. Increment and Decrement Operators</h3>
+      <p>These operators are used to increase or decrease a variable by 1.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Operator</th>
+            <th>Description</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>++</td>
+            <td>Increment</td>
+            <td><code>a++ or ++a</code></td>
+          </tr>
+          <tr>
+            <td>--</td>
+            <td>Decrement</td>
+            <td><code>a-- or --a</code></td>
+          </tr>
+        </tbody>
+      </table>
+      <pre><code>
+  public class IncrementDecrementExample {
+      public static void main(String[] args) {
+          int a = 10;
+          System.out.println("Post-Increment: " + (a++));
+          System.out.println("After Post-Increment: " + a);
+          System.out.println("Pre-Increment: " + (++a));
+          System.out.println("Post-Decrement: " + (a--));
+          System.out.println("After Post-Decrement: " + a);
+          System.out.println("Pre-Decrement: " + (--a));
+      }
+  }
+      </code></pre>
+      <h3>6. Bitwise Operators</h3>
+    <p>Bitwise operators are used to perform operations on individual bits.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Operator</th>
+          <th>Description</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>&amp;</td>
+          <td>Bitwise AND</td>
+          <td><code>a & b</code></td>
+        </tr>
+        <tr>
+          <td>|</td>
+          <td>Bitwise OR</td>
+          <td><code>a | b</code></td>
+        </tr>
+        <tr>
+          <td>^</td>
+          <td>Bitwise XOR</td>
+          <td><code>a ^ b</code></td>
+        </tr>
+        <tr>
+          <td>~</td>
+          <td>Bitwise Complement</td>
+          <td><code>~a</code></td>
+        </tr>
+        <tr>
+          <td>&lt;&lt;</td>
+          <td>Left Shift</td>
+          <td><code>a << 2</code></td>
+        </tr>
+        <tr>
+          <td>&gt;&gt;</td>
+          <td>Right Shift</td>
+          <td><code>a >> 2</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <pre><code>
+public class BitwiseExample {
+    public static void main(String[] args) {
+        int a = 5, b = 3;
+        System.out.println("Bitwise AND: " + (a & b));
+        System.out.println("Bitwise OR: " + (a | b));
+        System.out.println("Bitwise XOR: " + (a ^ b));
+        System.out.println("Bitwise Complement: " + (~a));
+        System.out.println("Left Shift: " + (a << 1));
+        System.out.println("Right Shift: " + (a >> 1));
+    }
+}
+    </code></pre>
+
+    <h3>7. Ternary Operator</h3>
+    <p>The ternary operator is a shorthand for the if-else statement.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Operator</th>
+          <th>Description</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>? :</td>
+          <td>Shorthand for if-else</td>
+          <td><code>(condition) ? value_if_true : value_if_false</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <pre><code>
+public class TernaryExample {
+    public static void main(String[] args) {
+        int a = 10, b = 20;
+        String result = (a > b) ? "a is greater" : "b is greater";
+        System.out.println("Ternary Operator Result: " + result);
+    }
+}
+    </code></pre>
+    </section>
+  </main>
+
+  <!-- Placeholder for Footer -->
+  <div id="footer-container"></div>
+
+  <script src="../js/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Variables in Java</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <!-- Placeholder for Header -->
+  <div id="header-container"></div>
+
+  <main>
+    <section>
+      <h2>Variables in Java: Declaration, Types, and Usage</h2>
+      <p>In Java, variables are used to store data that can be referenced and manipulated during the execution of a program. The declaration and use of variables are fundamental aspects of Java programming.</p>
+
+      <h3>1. Variable Declaration</h3>
+      <p>In Java, a variable declaration consists of the type followed by the variable name. Optionally, you can also initialize the variable. Here’s the syntax:</p>
+      <pre><code>type variableName;</code></pre>
+      <p>Example of declaring variables:</p>
+      <pre><code>
+// Variable Declaration Examples
+int number; // integer type variable
+String name; // string type variable
+boolean isActive; // boolean type variable
+
+// Variable Initialization
+number = 5;
+name = "Java";
+isActive = true;
+      </code></pre>
+      <p>In the example above:</p>
+      <ul>
+        <li><strong>int</strong> is a data type for integers.</li>
+        <li><strong>String</strong> is a class that represents a sequence of characters (text).</li>
+        <li><strong>boolean</strong> represents a true or false value.</li>
+      </ul>
+
+      <h3>2. Types of Variables in Java</h3>
+      <p>Java supports three types of variables:</p>
+      
+      <h4>Local Variables</h4>
+      <p>Local variables are declared inside a method or block and can only be used within that method or block. They do not have a default value and must be initialized before they are used.</p>
+      <pre><code>
+public class LocalVariableExample {
+    public static void main(String[] args) {
+        int number = 10; // Local variable, accessible only within this method
+        System.out.println("Number: " + number);
+    }
+}
+      </code></pre>
+
+      <h4>Static Variables</h4>
+      <p>Static variables are declared with the <code>static</code> keyword and are shared among all instances of a class. They are initialized only once and retain their value throughout the program.</p>
+      <pre><code>
+class StaticVariableExample {
+    static int counter = 0; // Static variable, shared by all instances
+
+    public StaticVariableExample() {
+        counter++; // Each instance increments the static variable
+    }
+
+    public static void main(String[] args) {
+        new StaticVariableExample();
+        new StaticVariableExample();
+        System.out.println("Counter: " + counter); // Output will be 2
+    }
+}
+      </code></pre>
+
+      <h4>Global Variables (Instance Variables)</h4>
+      <p>Global variables (often called instance variables) are declared within a class but outside any method or constructor. They are accessible by all methods of the class and are specific to each instance of the class. They are initialized to default values (e.g., 0 for integers, null for objects).</p>
+      <pre><code>
+class GlobalVariableExample {
+    int value = 5; // Global variable, accessible by all methods in the class
+
+    public void displayValue() {
+        System.out.println("Value: " + value);
+    }
+
+    public static void main(String[] args) {
+        GlobalVariableExample obj = new GlobalVariableExample();
+        obj.displayValue(); // Output will be 5
+    }
+}
+      </code></pre>
+
+      <h3>3. Variable Initialization and Usage</h3>
+      <p>After declaring a variable, you can initialize it (assign a value) and use it in your program. Here’s an example of how variables are used:</p>
+      <pre><code>
+public class VariableExample {
+    public static void main(String[] args) {
+        int age = 25;
+        String name = "John";
+        boolean isStudent = true;
+        
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Is Student: " + isStudent);
+    }
+}
+      </code></pre>
+      <p>In the above example:</p>
+      <ul>
+        <li><strong>age</strong> is an integer variable representing someone’s age.</li>
+        <li><strong>name</strong> is a String variable representing someone’s name.</li>
+        <li><strong>isStudent</strong> is a boolean variable representing if someone is a student.</li>
+      </ul>
+      <p>The program will output:</p>
+      <pre><code>Name: John
+Age: 25
+Is Student: true</code></pre>
+
+      <h3>4. Example of Variable Usage with Arithmetic Operations</h3>
+      <p>Variables can be used in arithmetic operations as well. Here's an example:</p>
+      <pre><code>
+public class ArithmeticExample {
+    public static void main(String[] args) {
+        int num1 = 10;
+        int num2 = 5;
+        int sum = num1 + num2;
+        int product = num1 * num2;
+        
+        System.out.println("Sum: " + sum);
+        System.out.println("Product: " + product);
+    }
+}
+      </code></pre>
+      <p>The program will output:</p>
+      <pre><code>Sum: 15
+Product: 50</code></pre>
+    </section>
+  </main>
+
+  <!-- Placeholder for Footer -->
+  <div id="footer-container"></div>
+  
+  <script src="../js/scripts.js"></script>
+</body>
+</html>

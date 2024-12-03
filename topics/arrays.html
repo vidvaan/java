@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arrays in Java</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <!-- Placeholder for Header -->
+  <div id="header-container"></div>
+
+  <main>
+    <section>
+      <h2>Arrays in Java: Creation, Manipulation, and Traversal</h2>
+      <p>Arrays are fundamental data structures in Java that allow storing multiple values of the same type in a single variable. They are fixed in size and allow indexed access to their elements.</p>
+
+      <h3>1. Array Creation</h3>
+      <p>In Java, an array is declared by specifying the type of elements it will hold, followed by square brackets. The array can be initialized at the time of declaration or later.</p>
+      <p>Array Declaration Syntax:</p>
+      <ul>
+        <li><code>type[] arrayName;</code></li>
+        <li><code>type arrayName[];</code> (alternative syntax)</li>
+      </ul>
+      <p>Example:</p>
+      <ul>
+        <li><code>int[] numbers = new int[5];</code> - Creates an integer array of size 5.</li>
+        <li><code>String[] fruits = {"Apple", "Banana", "Cherry"};</code> - Creates and initializes an array with values.</li>
+      </ul>
+
+      <h3>2. Array of User-Defined Objects</h3>
+      <p>In Java, you can create an array that holds user-defined objects. Below is an example where we create an array of <code>Person</code> objects:</p>
+
+      <h4>Example: Array of Objects</h4>
+      <p>Let's create a <code>Person</code> class and use it to define an array of <code>Person</code> objects:</p>
+      <pre><code>
+public class Person {
+    String name;
+    int age;
+
+    // Constructor to initialize the object
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Method to display person details
+    public void displayDetails() {
+        System.out.println("Name: " + name + ", Age: " + age);
+    }
+}
+
+public class ArrayOfObjects {
+    public static void main(String[] args) {
+        // Creating an array of Person objects
+        Person[] people = new Person[3];
+
+        // Initializing the objects in the array
+        people[0] = new Person("Alice", 25);
+        people[1] = new Person("Bob", 30);
+        people[2] = new Person("Charlie", 35);
+
+        // Traversing the array and calling displayDetails on each person
+        for (Person person : people) {
+            person.displayDetails();
+        }
+    }
+}
+      </code></pre>
+
+      <p>The output of this example will be:</p>
+      <pre><code>
+Name: Alice, Age: 25
+Name: Bob, Age: 30
+Name: Charlie, Age: 35
+      </code></pre>
+
+      <h3>3. Array Manipulation</h3>
+      <p>Arrays in Java are zero-indexed, meaning the first element is at index 0, the second at index 1, and so on.</p>
+      <p>Example of accessing and manipulating array elements:</p>
+      <ul>
+        <li><code>numbers[0] = 10;</code> - Sets the first element of the array to 10.</li>
+        <li><code>fruits[1] = "Orange";</code> - Changes the second element of the array to "Orange".</li>
+      </ul>
+
+      <h3>4. Traversing Arrays</h3>
+      <p>Traversing an array means accessing each element of the array. You can use a loop, such as a <code>for</code> loop or <code>foreach</code> loop, to iterate over the elements.</p>
+
+      <h4>Using a <code>for</code> loop to traverse:</h4>
+      <ul>
+        <li><code>for (int i = 0; i < numbers.length; i++) {</code></li>
+        <li><code>  System.out.println(numbers[i]);</code></li>
+        <li><code>}</code></li>
+      </ul>
+
+      <h4>Using a <code>foreach</code> loop to traverse:</h4>
+      <ul>
+        <li><code>for (String fruit : fruits) {</code></li>
+        <li><code>  System.out.println(fruit);</code></li>
+        <li><code>}</code></li>
+      </ul>
+
+      <h3>5. Example: Array Declaration, Manipulation, and Traversal</h3>
+      <p>Here’s an example that demonstrates array creation, manipulation, and traversal in Java:</p>
+      <ul>
+        <li>Declaration: <code>int[] numbers = {1, 2, 3, 4, 5};</code></li>
+        <li>Manipulation: <code>numbers[2] = 10;</code> (changes the third element)</li>
+        <li>Traversal:</li>
+      </ul>
+      <pre><code>
+public class ArrayExample {
+    public static void main(String[] args) {
+        int[] numbers = {1, 2, 3, 4, 5};
+        
+        // Modify an element
+        numbers[2] = 10; // Change the third element to 10
+        
+        // Traverse the array using a for loop
+        System.out.println("Using for loop:");
+        for (int i = 0; i < numbers.length; i++) {
+            System.out.println(numbers[i]);
+        }
+        
+        // Traverse the array using a foreach loop
+        System.out.println("Using foreach loop:");
+        for (int num : numbers) {
+            System.out.println(num);
+        }
+    }
+}
+      </code></pre>
+
+      <p>The output of this example will be:</p>
+      <pre><code>
+Using for loop:
+1
+2
+10
+4
+5
+Using foreach loop:
+1
+2
+10
+4
+5
+      </code></pre>
+
+      <h3>6. Array Length</h3>
+      <p>The <code>length</code> property of an array returns the number of elements in the array. It’s important to note that <code>length</code> is a property (not a method) and doesn't require parentheses.</p>
+      <p>Example:</p>
+      <ul>
+        <li><code>int arrayLength = numbers.length;</code> - This will store the size of the array in the <code>arrayLength</code> variable.</li>
+      </ul>
+
+      <h3>7. Multidimensional Arrays</h3>
+      <p>In Java, you can also work with multidimensional arrays (arrays of arrays). Here’s an example of a two-dimensional array:</p>
+      <pre><code>
+public class MultiDimensionalArrayExample {
+    public static void main(String[] args) {
+        int[][] matrix = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+
+        // Traverse the 2D array
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+      </code></pre>
+
+      <p>The output of this 2D array example will be:</p>
+      <pre><code>
+1 2 3 
+4 5 6 
+7 8 9 
+      </code></pre>
+    </section>
+  </main>
+
+  <!-- Placeholder for Footer -->
+  <div id="footer-container"></div>
+
+  <script src="../js/scripts.js"></script>
+</body>
+</html>
