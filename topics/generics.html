@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generics in Java</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <!-- Placeholder for Header -->
+  <div id="header-container"></div>
+
+  <main>
+    <section>
+      <h2>Generics in Java: Type Safety and Flexibility</h2>
+      <p>Generics in Java allow you to define classes, methods, and interfaces with type parameters. They provide stronger type checks at compile time, reducing errors related to type casting and enhancing code reusability.</p>
+
+      <h3>1. What are Generics?</h3>
+      <p>Generics enable classes, interfaces, and methods to operate on objects of various types while providing compile-time type safety. Instead of working with raw types, you specify type parameters to make your code more flexible and reusable.</p>
+
+      <h3>2. Need for Generics</h3>
+      <ul>
+        <li>Generics provide <strong>type safety</strong> by ensuring that only the specified type of data is used.</li>
+        <li>They eliminate <strong>type-casting errors</strong> at runtime.</li>
+        <li>Generics allow for <strong>reusable code</strong> that works with any type, enhancing maintainability.</li>
+        <li>Compile-time errors are detected, reducing runtime issues.</li>
+      </ul>
+
+      <h3>3. Generic Collections</h3>
+      <p>Using generics with collections ensures type safety and avoids the need for type casting. For example, instead of using raw collections, you can specify the type of elements the collection will hold.</p>
+      <pre><code>
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();
+        list.add("Apple");
+        list.add("Banana");
+        // list.add(123); // Compile-time error
+
+        for (String item : list) {
+            System.out.println(item);
+        }
+    }
+}
+      </code></pre>
+
+      <h3>4. Create a Generic Class</h3>
+      <p>A generic class can hold objects of any type. Here's an example of a simple generic class:</p>
+      <pre><code>
+public class GenericBox&lt;T&gt; {
+    private T value;
+
+    public void setValue(T value) {
+        this.value = value;
+    }
+
+    public T getValue() {
+        return value;
+    }
+
+    public static void main(String[] args) {
+        GenericBox&lt;String&gt; box = new GenericBox&lt;&gt;();
+        box.setValue("Generics in Java");
+        System.out.println(box.getValue());
+    }
+}
+      </code></pre>
+
+      <h3>5. Create Generic Methods</h3>
+      <p>Generic methods allow you to specify type parameters in methods to handle different types of data.</p>
+      <pre><code>
+public class Main {
+    public static &lt;T&gt; void printArray(T[] array) {
+        for (T element : array) {
+            System.out.println(element);
+        }
+    }
+
+    public static void main(String[] args) {
+        String[] names = {"Alice", "Bob", "Charlie"};
+        Integer[] numbers = {1, 2, 3};
+
+        printArray(names);
+        printArray(numbers);
+    }
+}
+      </code></pre>
+
+      <h3>6. Bounded Types</h3>
+      <p>In generics, you can restrict the types allowed for a parameter using bounded types. For example, you can restrict the type to subclasses of a specific class.</p>
+      <pre><code>
+public class Main {
+    public static &lt;T extends Number&gt; void printDouble(T number) {
+        System.out.println(number.doubleValue());
+    }
+
+    public static void main(String[] args) {
+        printDouble(10);       // Integer
+        printDouble(10.5);     // Double
+        // printDouble("text"); // Compile-time error
+    }
+}
+      </code></pre>
+
+      <h3>7. Wildcards</h3>
+      <p>Wildcards in generics provide flexibility when you want to allow multiple types. There are three types of wildcards in Java:</p>
+
+      <h4>Unbounded Wildcard</h4>
+      <pre><code>
+public static void printList(List&lt;?&gt; list) {
+    for (Object obj : list) {
+        System.out.println(obj);
+    }
+}
+      </code></pre>
+
+      <h4>Upper-Bounded Wildcard</h4>
+      <p>Use `? extends Type` to specify that the type is a subclass of the given class.</p>
+      <pre><code>
+public static void printNumbers(List&lt;? extends Number&gt; list) {
+    for (Number num : list) {
+        System.out.println(num);
+    }
+}
+      </code></pre>
+
+      <h4>Lower-Bounded Wildcard</h4>
+      <p>Use `? super Type` to specify that the type is a superclass of the given class.</p>
+      <pre><code>
+public static void addNumbers(List&lt;? super Integer&gt; list) {
+    list.add(10);
+    list.add(20);
+}
+      </code></pre>
+
+      <h3>8. Conclusion</h3>
+      <p>Generics in Java provide compile-time type safety, allowing you to write more flexible and reusable code. They are widely used in the Java Collections Framework, making it easier to work with different types of data in a type-safe manner.</p>
+    </section>
+  </main>
+
+  <!-- Placeholder for Footer -->
+  <div id="footer-container"></div>
+
+  <script src="../js/scripts.js"></script>
+</body>
+</html>

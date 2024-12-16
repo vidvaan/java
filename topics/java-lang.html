@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Java Lang Package</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <!-- Placeholder for Header -->
+  <div id="header-container"></div>
+
+  <main>
+      <h2>Java Lang Package:Object, String, StringBuffer, StringBuilder, and Wrapper Classes</h2>
+      <section>
+        <p>The <code>java.lang</code> package is the core of the Java programming language. It contains classes and interfaces that are essential for developing Java applications. This package is automatically imported into every Java program, so developers do not need to explicitly include it.</p>
+
+      <h3>Key Features of java.lang Package</h3>
+      <ul>
+        <li>Provides classes for fundamental data types and objects such as <code>Object</code>, <code>String</code>, and <code>Math</code>.</li>
+        <li>Includes wrapper classes for primitive data types like <code>Integer</code>, <code>Double</code>, and <code>Boolean</code>.</li>
+        <li>Supports threading with the <code>Thread</code> and <code>Runnable</code> classes.</li>
+        <li>Facilitates runtime information and management with classes like <code>Runtime</code> and <code>System</code>.</li>
+      </ul>
+        <h2>The Object Class in Java</h2>
+        <p>The <code>Object</code> class is the root class of the Java class hierarchy. Every class in Java directly or indirectly inherits from the <code>Object</code> class. It provides a set of methods that are fundamental to all Java objects.</p>
+  
+        <h3>Key Methods of the Object Class</h3>
+        <p>Below are the methods of the <code>Object</code> class with detailed explanations and examples:</p>
+        <table>
+          <tr>
+              <th>Method</th>
+              <th>Description</th>
+          </tr>
+          <tr>
+              <td>boolean equals(Object obj)</td>
+              <td>Checks if two objects are equal.</td>
+          </tr>
+          <tr>
+              <td>int hashCode()</td>
+              <td>Returns the hash code of the object.</td>
+          </tr>
+          <tr>
+              <td>String toString()</td>
+              <td>Returns a string representation of the object.</td>
+          </tr>
+          <tr>
+              <td>Class<?> getClass()</td>
+              <td>Returns the runtime class of the object.</td>
+          </tr>
+          <tr>
+              <td>Object clone()</td>
+              <td>Creates and returns a copy of the object.</td>
+          </tr>
+          <tr>
+              <td>void finalize()</td>
+              <td>Called by the garbage collector before object destruction.</td>
+          </tr>
+          <tr>
+              <td>void wait()</td>
+              <td>Causes the current thread to wait until notified.</td>
+          </tr>
+          <tr>
+              <td>void wait(long timeout)</td>
+              <td>Causes the current thread to wait for a specified time.</td>
+          </tr>
+          <tr>
+              <td>void wait(long timeout, int nanos)</td>
+              <td>Causes the current thread to wait for a specified time and nanoseconds.</td>
+          </tr>
+          <tr>
+              <td>void notify()</td>
+              <td>Wakes up a single thread waiting on the object's monitor.</td>
+          </tr>
+          <tr>
+              <td>void notifyAll()</td>
+              <td>Wakes up all threads waiting on the object's monitor.</td>
+          </tr>
+      </table>
+      
+        <!-- 1. toString() -->
+        <h4>1. <code>toString()</code></h4>
+        <p>The <code>toString()</code> method returns a string representation of the object. By default, it returns a string in the format: <code>ClassName@HashCode</code>.</p>
+        <p><strong>Example:</strong></p>
+        <pre><code>
+  public class ObjectToStringExample {
+      public static void main(String[] args) {
+          Object obj = new Object();
+          System.out.println(obj.toString()); // Default implementation
+      }
+  }
+        </code></pre>
+        <p><strong>Custom Implementation:</strong> You can override the <code>toString()</code> method in your class:</p>
+        <pre><code>
+  public class Person {
+      String name;
+      int age;
+  
+      public Person(String name, int age) {
+          this.name = name;
+          this.age = age;
+      }
+  
+      @Override
+      public String toString() {
+          return "Person{name='" + name + "', age=" + age + "}";
+      }
+  }
+  
+  public class ToStringExample {
+      public static void main(String[] args) {
+          Person person = new Person("Alice", 25);
+          System.out.println(person.toString());
+      }
+  }
+        </code></pre>
+        <p><strong>Output:</strong></p>
+        <pre><code>
+  Person{name='Alice', age=25}
+        </code></pre>
+  
+        <!-- 2. equals(Object obj) -->
+        <h4>2. <code>equals(Object obj)</code></h4>
+        <p>The <code>equals()</code> method compares two objects for equality. By default, it checks if two references point to the same object.</p>
+        <p><strong>Example:</strong></p>
+        <pre><code>
+  public class EqualsExample {
+      public static void main(String[] args) {
+          Object obj1 = new Object();
+          Object obj2 = new Object();
+  
+          System.out.println(obj1.equals(obj2)); // false
+          System.out.println(obj1.equals(obj1)); // true
+      }
+  }
+        </code></pre>
+        <p><strong>Custom Implementation:</strong> Override the <code>equals()</code> method to compare object fields:</p>
+        <pre><code>
+  public class Person {
+      String name;
+  
+      public Person(String name) {
+          this.name = name;
+      }
+  
+      @Override
+      public boolean equals(Object obj) {
+          if (this == obj) return true;
+          if (obj == null || getClass() != obj.getClass()) return false;
+          Person person = (Person) obj;
+          return name.equals(person.name);
+      }
+  }
+  
+  public class CustomEqualsExample {
+      public static void main(String[] args) {
+          Person p1 = new Person("Alice");
+          Person p2 = new Person("Alice");
+          System.out.println(p1.equals(p2)); // true
+      }
+  }
+        </code></pre>
+  
+        <!-- 3. hashCode() -->
+        <h4>3. <code>hashCode()</code></h4>
+        <p>The <code>hashCode()</code> method returns an integer value (hash code) that represents the object. It is used in hash-based collections like <code>HashMap</code>.</p>
+        <p><strong>Example:</strong></p>
+        <pre><code>
+  public class HashCodeExample {
+      public static void main(String[] args) {
+          Object obj = new Object();
+          System.out.println(obj.hashCode());
+      }
+  }
+        </code></pre>
+        <p><strong>Custom Implementation:</strong> Ensure consistency with <code>equals()</code> when overriding:</p>
+        <pre><code>
+  @Override
+  public int hashCode() {
+      return name.hashCode();
+  }
+        </code></pre>
+  
+        <!-- 4. getClass() -->
+        <h4>4. <code>getClass()</code></h4>
+        <p>The <code>getClass()</code> method returns the runtime class of the object.</p>
+        <p><strong>Example:</strong></p>
+        <pre><code>
+  public class GetClassExample {
+      public static void main(String[] args) {
+          Object obj = new Object();
+          System.out.println(obj.getClass()); // class java.lang.Object
+      }
+  }
+        </code></pre>
+  
+        <!-- 5. clone() -->
+        <h4>5. <code>clone()</code></h4>
+        <p>The <code>clone()</code> method creates a copy of the object. To use this method, the class must implement the <code>Cloneable</code> interface.</p>
+        <p><strong>Example:</strong></p>
+        <pre><code>
+  public class Person implements Cloneable {
+      String name;
+  
+      public Person(String name) {
+          this.name = name;
+      }
+  
+      @Override
+      protected Object clone() throws CloneNotSupportedException {
+          return super.clone();
+      }
+  }
+  
+  public class CloneExample {
+      public static void main(String[] args) throws CloneNotSupportedException {
+          Person person1 = new Person("Alice");
+          Person person2 = (Person) person1.clone();
+          System.out.println(person1.name.equals(person2.name)); // true
+      }
+  }
+        </code></pre>
+  
+        <!-- 6. finalize() -->
+        <h4>6. <code>finalize()</code></h4>
+        <p>The <code>finalize()</code> method is invoked by the garbage collector before an object is destroyed. It is rarely used.</p>
+        <p><strong>Example:</strong></p>
+        <pre><code>
+  public class FinalizeExample {
+      @Override
+      protected void finalize() {
+          System.out.println("Finalize method called");
+      }
+  
+      public static void main(String[] args) {
+          FinalizeExample example = new FinalizeExample();
+          example = null;
+          System.gc(); // Request garbage collection
+      }
+  }
+        </code></pre>
+  
+      </section>
+      <section>
+        <h2>Understanding Strings in Java</h2>
+        <p>In Java, the <code>String</code> class represents a sequence of characters. Strings are immutable, meaning their value cannot be changed once created. Strings are extensively used in Java and are stored in a special memory area called the String Constant Pool (SCP).</p>
+  
+        <h3>1. Immutability of Strings</h3>
+        <p>Strings are immutable in Java, which means that once a <code>String</code> object is created, it cannot be modified. Any operation that appears to modify a string actually creates a new string.</p>
+        <p><strong>Example:</strong></p>
+        <pre><code>
+  public class StringImmutability {
+      public static void main(String[] args) {
+          String str = "Hello";
+          str.concat(" World");
+          System.out.println(str); // Output: Hello (original string remains unchanged)
+  
+          String newStr = str.concat(" World");
+          System.out.println(newStr); // Output: Hello World
+      }
+  }
+        </code></pre>
+  
+        <h3>2. What is SCP (String Constant Pool)?</h3>
+        <p>The String Constant Pool (SCP) is a special memory area in Java's heap memory. It is used to store string literals. If a string literal is already in the pool, the reference to the existing literal is returned instead of creating a new object.</p>
+        <p><strong>Example:</strong></p>
+        <pre><code>
+  public class SCPExample {
+      public static void main(String[] args) {
+          String str1 = "Java";
+          String str2 = "Java";
+          String str3 = new String("Java");
+  
+          System.out.println(str1 == str2); // true (same reference in SCP)
+          System.out.println(str1 == str3); // false (new object in heap)
+      }
+  }
+        </code></pre>
+  
+        <h3>3. String Object Creation</h3>
+        <p>Strings can be created in two ways:</p>
+        <ul>
+          <li><strong>Using String literals:</strong> Stored in SCP.</li>
+          <li><strong>Using the <code>new</code> keyword:</strong> Stored in the heap memory.</li>
+        </ul>
+        <p><strong>Example:</strong></p>
+        <pre><code>
+  public class StringCreation {
+      public static void main(String[] args) {
+          // String literal
+          String str1 = "Hello";
+  
+          // Using new keyword
+          String str2 = new String("Hello");
+      }
+  }
+        </code></pre>
+        </section>
+        <section>
+          <h1>Frequently Used String Methods in Java</h1>
+          <p>The <code>String</code> class in Java provides numerous methods for manipulating and analyzing strings. Below are 25 frequently used methods with examples:</p>
+    
+          <ol>
+            <li>
+              <strong>length()</strong>
+              <p>Returns the length of the string.</p>
+              <pre><code>String str = "Hello";
+    System.out.println(str.length()); // Output: 5</code></pre>
+            </li>
+    
+            <li>
+              <strong>charAt(int index)</strong>
+              <p>Returns the character at the specified index.</p>
+              <pre><code>String str = "Hello";
+    System.out.println(str.charAt(1)); // Output: 'e'</code></pre>
+            </li>
+    
+            <li>
+              <strong>substring(int beginIndex)</strong>
+              <p>Returns a substring starting from the specified index.</p>
+              <pre><code>String str = "Hello World";
+    System.out.println(str.substring(6)); // Output: "World"</code></pre>
+            </li>
+    
+            <li>
+              <strong>substring(int beginIndex, int endIndex)</strong>
+              <p>Returns a substring from beginIndex to endIndex (exclusive).</p>
+              <pre><code>String str = "Hello World";
+    System.out.println(str.substring(0, 5)); // Output: "Hello"</code></pre>
+            </li>
+    
+            <li>
+              <strong>toUpperCase()</strong>
+              <p>Converts all characters to uppercase.</p>
+              <pre><code>String str = "hello";
+    System.out.println(str.toUpperCase()); // Output: "HELLO"</code></pre>
+            </li>
+    
+            <li>
+              <strong>toLowerCase()</strong>
+              <p>Converts all characters to lowercase.</p>
+              <pre><code>String str = "HELLO";
+    System.out.println(str.toLowerCase()); // Output: "hello"</code></pre>
+            </li>
+    
+            <li>
+              <strong>trim()</strong>
+              <p>Removes leading and trailing whitespace.</p>
+              <pre><code>String str = "  Hello  ";
+    System.out.println(str.trim()); // Output: "Hello"</code></pre>
+            </li>
+    
+            <li>
+              <strong>equals(Object obj)</strong>
+              <p>Checks if two strings are equal.</p>
+              <pre><code>String str1 = "Hello";
+    String str2 = "Hello";
+    System.out.println(str1.equals(str2)); // Output: true</code></pre>
+            </li>
+    
+            <li>
+              <strong>equalsIgnoreCase(String anotherString)</strong>
+              <p>Checks if two strings are equal, ignoring case.</p>
+              <pre><code>String str1 = "hello";
+    String str2 = "HELLO";
+    System.out.println(str1.equalsIgnoreCase(str2)); // Output: true</code></pre>
+            </li>
+    
+            <li>
+              <strong>startsWith(String prefix)</strong>
+              <p>Checks if the string starts with the specified prefix.</p>
+              <pre><code>String str = "Hello World";
+    System.out.println(str.startsWith("Hello")); // Output: true</code></pre>
+            </li>
+    
+            <li>
+              <strong>endsWith(String suffix)</strong>
+              <p>Checks if the string ends with the specified suffix.</p>
+              <pre><code>String str = "Hello World";
+    System.out.println(str.endsWith("World")); // Output: true</code></pre>
+            </li>
+    
+            <li>
+              <strong>indexOf(int ch)</strong>
+              <p>Returns the index of the first occurrence of the character.</p>
+              <pre><code>String str = "Hello World";
+    System.out.println(str.indexOf('o')); // Output: 4</code></pre>
+            </li>
+    
+            <li>
+              <strong>lastIndexOf(int ch)</strong>
+              <p>Returns the index of the last occurrence of the character.</p>
+              <pre><code>String str = "Hello World";
+    System.out.println(str.lastIndexOf('o')); // Output: 7</code></pre>
+            </li>
+    
+            <li>
+              <strong>contains(CharSequence sequence)</strong>
+              <p>Checks if the string contains the specified sequence.</p>
+              <pre><code>String str = "Hello World";
+    System.out.println(str.contains("World")); // Output: true</code></pre>
+            </li>
+    
+            <li>
+              <strong>replace(char oldChar, char newChar)</strong>
+              <p>Replaces all occurrences of a character.</p>
+              <pre><code>String str = "Hello World";
+    System.out.println(str.replace('o', 'a')); // Output: "Hella Warld"</code></pre>
+            </li>
+    
+            <li>
+              <strong>replace(CharSequence target, CharSequence replacement)</strong>
+              <p>Replaces all occurrences of a substring.</p>
+              <pre><code>String str = "Hello World";
+    System.out.println(str.replace("World", "Java")); // Output: "Hello Java"</code></pre>
+            </li>
+    
+            <li>
+              <strong>split(String regex)</strong>
+              <p>Splits the string into an array based on the specified regex.</p>
+              <pre><code>String str = "Hello World Java";
+    String[] words = str.split(" ");
+    for (String word : words) {
+        System.out.println(word);
+    }
+    // Output: "Hello", "World", "Java"</code></pre>
+            </li>
+    
+            <li>
+              <strong>concat(String str)</strong>
+              <p>Concatenates the specified string to the end.</p>
+              <pre><code>String str1 = "Hello";
+    String str2 = " World";
+    System.out.println(str1.concat(str2)); // Output: "Hello World"</code></pre>
+            </li>
+    
+            <li>
+              <strong>toCharArray()</strong>
+              <p>Converts the string into a character array.</p>
+              <pre><code>String str = "Hello";
+    char[] chars = str.toCharArray();
+    for (char c : chars) {
+        System.out.print(c + " ");
+    }
+    // Output: "H e l l o"</code></pre>
+            </li>
+    
+            <li>
+              <strong>valueOf(Object obj)</strong>
+              <p>Converts the given object to a string.</p>
+              <pre><code>int num = 10;
+    System.out.println(String.valueOf(num)); // Output: "10"</code></pre>
+            </li>
+    
+            <li>
+              <strong>matches(String regex)</strong>
+              <p>Checks if the string matches the regex.</p>
+              <pre><code>String str = "12345";
+    System.out.println(str.matches("\\d+")); // Output: true</code></pre>
+            </li>
+    
+            <li>
+              <strong>intern()</strong>
+              <p>Returns the canonical representation of the string.</p>
+              <pre><code>String str1 = new String("Hello").intern();
+    String str2 = "Hello";
+    System.out.println(str1 == str2); // Output: true</code></pre>
+            </li>
+    
+            <li>
+              <strong>repeat(int count)</strong>
+              <p>Repeats the string a specified number of times.</p>
+              <pre><code>String str = "Hi ";
+    System.out.println(str.repeat(3)); // Output: "Hi Hi Hi "</code></pre>
+            </li>
+          </ol>
+        </section>
+        <section>
+          <h1>StringBuffer and StringBuilder in Java</h1>
+    
+          <h2>What is StringBuffer?</h2>
+          <p><strong>StringBuffer</strong> is a mutable sequence of characters. It is used when you need to modify strings frequently, such as in a loop or with a large amount of data. It is synchronized, making it thread-safe, but this comes at a performance cost.</p>
+          
+          <h3>StringBuffer Methods</h3>
+          <ul>
+            <li><strong>append()</strong>: Adds text to the end of the StringBuffer.</li>
+            <p>Example:</p>
+            <pre><code>
+    StringBuffer sb = new StringBuffer("Hello");
+    sb.append(" World");
+    System.out.println(sb); // Output: Hello World
+            </code></pre>
+    
+            <li><strong>insert()</strong>: Inserts text at a specified position.</li>
+            <p>Example:</p>
+            <pre><code>
+    StringBuffer sb = new StringBuffer("Hello");
+    sb.insert(5, " World");
+    System.out.println(sb); // Output: Hello World
+            </code></pre>
+    
+            <li><strong>replace()</strong>: Replaces a portion of the StringBuffer.</li>
+            <p>Example:</p>
+            <pre><code>
+    StringBuffer sb = new StringBuffer("Hello World");
+    sb.replace(6, 11, "Java");
+    System.out.println(sb); // Output: Hello Java
+            </code></pre>
+    
+            <li><strong>delete()</strong>: Deletes a portion of the StringBuffer.</li>
+            <p>Example:</p>
+            <pre><code>
+    StringBuffer sb = new StringBuffer("Hello World");
+    sb.delete(5, 11);
+    System.out.println(sb); // Output: Hello
+            </code></pre>
+    
+            <li><strong>reverse()</strong>: Reverses the content of the StringBuffer.</li>
+            <p>Example:</p>
+            <pre><code>
+    StringBuffer sb = new StringBuffer("Hello");
+    sb.reverse();
+    System.out.println(sb); // Output: olleH
+            </code></pre>
+    
+            <li><strong>capacity()</strong>: Returns the current capacity of the StringBuffer.</li>
+            <p>Example:</p>
+            <pre><code>
+    StringBuffer sb = new StringBuffer("Hello");
+    System.out.println(sb.capacity()); // Output: 16 (default capacity is 16)
+            </code></pre>
+    
+            <li><strong>toString()</strong>: Converts the StringBuffer to a String.</li>
+            <p>Example:</p>
+            <pre><code>
+    StringBuffer sb = new StringBuffer("Hello");
+    String str = sb.toString();
+    System.out.println(str); // Output: Hello
+            </code></pre>
+          </ul>
+    
+          <h2>What is StringBuilder?</h2>
+          <p><strong>StringBuilder</strong> is similar to StringBuffer but it is not synchronized, which means it is faster than StringBuffer when used in a single-threaded environment. It is also mutable, and often used in cases where thread safety is not required.</p>
+    
+          <h3>StringBuilder Methods</h3>
+          <ul>
+            <li><strong>append()</strong>: Adds text to the end of the StringBuilder.</li>
+            <p>Example:</p>
+            <pre><code>
+    StringBuilder sb = new StringBuilder("Java");
+    sb.append(" Programming");
+    System.out.println(sb); // Output: Java Programming
+            </code></pre>
+    
+            <li><strong>insert()</strong>: Inserts text at a specified position.</li>
+            <p>Example:</p>
+            <pre><code>
+    StringBuilder sb = new StringBuilder("Java");
+    sb.insert(4, " Programming");
+    System.out.println(sb); // Output: Java Programming
+            </code></pre>
+    
+            <li><strong>replace()</strong>: Replaces a portion of the StringBuilder.</li>
+            <p>Example:</p>
+            <pre><code>
+    StringBuilder sb = new StringBuilder("Java Programming");
+    sb.replace(5, 16, "Coding");
+    System.out.println(sb); // Output: Java Coding
+            </code></pre>
+    
+            <li><strong>delete()</strong>: Deletes a portion of the StringBuilder.</li>
+            <p>Example:</p>
+            <pre><code>
+    StringBuilder sb = new StringBuilder("Java Programming");
+    sb.delete(4, 16);
+    System.out.println(sb); // Output: Java
+            </code></pre>
+    
+            <li><strong>reverse()</strong>: Reverses the content of the StringBuilder.</li>
+            <p>Example:</p>
+            <pre><code>
+    StringBuilder sb = new StringBuilder("Java");
+    sb.reverse();
+    System.out.println(sb); // Output: avaJ
+            </code></pre>
+    
+            <li><strong>capacity()</strong>: Returns the current capacity of the StringBuilder.</li>
+            <p>Example:</p>
+            <pre><code>
+    StringBuilder sb = new StringBuilder("Java");
+    System.out.println(sb.capacity()); // Output: 16 (default capacity is 16)
+            </code></pre>
+    
+            <li><strong>toString()</strong>: Converts the StringBuilder to a String.</li>
+            <p>Example:</p>
+            <pre><code>
+    StringBuilder sb = new StringBuilder("Java");
+    String str = sb.toString();
+    System.out.println(str); // Output: Java
+            </code></pre>
+          </ul>
+    
+          <h2>Difference Between String, StringBuffer, and StringBuilder</h2>
+          <table border="1">
+            <tr>
+              <th>Feature</th>
+              <th>String</th>
+              <th>StringBuffer</th>
+              <th>StringBuilder</th>
+            </tr>
+            <tr>
+              <td>Immutability</td>
+              <td>Immutable (Cannot be changed)</td>
+              <td>Mutable (Can be modified)</td>
+              <td>Mutable (Can be modified)</td>
+            </tr>
+            <tr>
+              <td>Thread-Safety</td>
+              <td>Not thread-safe</td>
+              <td>Thread-safe (Synchronized)</td>
+              <td>Not thread-safe</td>
+            </tr>
+            <tr>
+              <td>Performance</td>
+              <td>Slower due to immutability</td>
+              <td>Slower (Thread-safe)</td>
+              <td>Faster (Not thread-safe)</td>
+            </tr>
+            <tr>
+              <td>Use Case</td>
+              <td>Best for constant, unchanging strings</td>
+              <td>Best when working in multi-threaded environments</td>
+              <td>Best when working in single-threaded environments</td>
+            </tr>
+          </table>
+    
+          <h2>Conclusion</h2>
+          <p><strong>String</strong> is immutable and slower for concatenation operations. If you need a mutable sequence of characters, use <strong>StringBuffer</strong> for thread-safety or <strong>StringBuilder</strong> when performance is a higher priority in single-threaded scenarios.</p>
+        </section>
+
+        <section>
+          <h1>Wrapper Classes in Java</h1>
+          <p><strong>Wrapper classes</strong> in Java are used to represent the primitive data types as objects. Every primitive type has a corresponding wrapper class in Java:</p>
+          <ul>
+            <li><code>int</code> → <code>Integer</code></li>
+            <li><code>char</code> → <code>Character</code></li>
+            <li><code>double</code> → <code>Double</code></li>
+            <li><code>float</code> → <code>Float</code></li>
+            <li><code>long</code> → <code>Long</code></li>
+            <li><code>short</code> → <code>Short</code></li>
+            <li><code>byte</code> → <code>Byte</code></li>
+            <li><code>boolean</code> → <code>Boolean</code></li>
+          </ul>
+    
+          <h2>1. Convert String to Wrapper Class and Vice Versa</h2>
+          <p>You can convert a <code>String</code> to its corresponding wrapper class and vice versa. Here's how:</p>
+    
+          <h3>Convert String to Wrapper Class</h3>
+          <p>To convert a <code>String</code> to a wrapper class object, you can use the <code>valueOf()</code> method of the wrapper class.</p>
+          <pre><code>
+    String str = "123";
+    Integer intObj = Integer.valueOf(str);  // String to Integer Wrapper
+    System.out.println(intObj);  // Output: 123
+          </code></pre>
+    
+          <h3>Convert Wrapper Class to String</h3>
+          <p>To convert a wrapper class object to a <code>String</code>, you can use the <code>toString()</code> method of the wrapper class or the <code>String.valueOf()</code> method.</p>
+          <pre><code>
+    Integer intObj = 123;
+    String str = intObj.toString();  // Wrapper Integer to String
+    System.out.println(str);  // Output: "123"
+          </code></pre>
+    
+          <h2>2. Convert String to Primitive and Vice Versa</h2>
+          <p>Converting between <code>String</code> and primitive types can be done using parsing methods for primitive types.</p>
+    
+          <h3>Convert String to Primitive</h3>
+          <p>To convert a <code>String</code> to a primitive type, use the <code>parse</code> methods of the respective wrapper class.</p>
+          <pre><code>
+    String str = "123";
+    int intValue = Integer.parseInt(str);  // String to int
+    System.out.println(intValue);  // Output: 123
+          </code></pre>
+    
+          <h3>Convert Primitive to String</h3>
+          <p>To convert a primitive type to a <code>String</code>, use the <code>String.valueOf()</code> method or simply concatenate with an empty string.</p>
+          <pre><code>
+    int num = 123;
+    String str = String.valueOf(num);  // int to String
+    System.out.println(str);  // Output: "123"
+          </code></pre>
+    
+          <h2>3. Convert Wrapper Class to Primitive and Vice Versa</h2>
+          <p>Wrapper classes can be converted to primitive types using <code>xxxValue()</code> methods, and primitives can be converted to wrapper classes using auto-boxing or the <code>valueOf()</code> method.</p>
+    
+          <h3>Convert Wrapper Class to Primitive</h3>
+          <p>To convert a wrapper class object to its corresponding primitive type, use the <code>xxxValue()</code> method, where <code>xxx</code> is the name of the primitive type.</p>
+          <pre><code>
+    Integer intObj = 123;
+    int intValue = intObj.intValue();  // Wrapper to primitive
+    System.out.println(intValue);  // Output: 123
+          </code></pre>
+    
+          <h3>Convert Primitive to Wrapper Class</h3>
+          <p>To convert a primitive to a wrapper class object, you can either use auto-boxing or the <code>valueOf()</code> method.</p>
+          <pre><code>
+    int num = 123;
+    Integer intObj = Integer.valueOf(num);  // Primitive to Wrapper
+    System.out.println(intObj);  // Output: 123
+          </code></pre>
+    
+          <h2>Auto-boxing and Unboxing</h2>
+          <p>Java automatically converts between primitive types and wrapper classes, a feature known as <strong>auto-boxing</strong> (primitive to wrapper) and <strong>unboxing</strong> (wrapper to primitive).</p>
+          <pre><code>
+    int num = 123;
+    Integer intObj = num;  // Auto-boxing (primitive to wrapper)
+    
+    int unboxedValue = intObj;  // Unboxing (wrapper to primitive)
+    System.out.println(unboxedValue);  // Output: 123
+          </code></pre>
+    
+          <h2>Summary</h2>
+          <p>In summary, converting between <code>String</code>, <code>Wrapper</code> classes, and primitive types is straightforward using methods such as <code>valueOf()</code>, <code>parseInt()</code>, <code>toString()</code>, and the <code>xxxValue()</code> methods. Java also provides auto-boxing and unboxing for automatic conversion between primitive types and wrapper classes.</p>
+    
+        </section>
+  </main>
+
+  <!-- Placeholder for Footer -->
+  <div id="footer-container"></div>
+
+  <script src="../js/scripts.js"></script>
+</body>
+</html>

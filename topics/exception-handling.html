@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exception Handling in Java</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <!-- Placeholder for Header -->
+  <div id="header-container"></div>
+
+  <main>
+    <!-- Section: Introduction -->
+    <section>
+      <h2>Exception Handling in Java</h2>
+      <p>Exception handling in Java is a mechanism to manage runtime errors and ensure the smooth flow of a program. It helps developers handle unexpected situations gracefully.</p>
+    </section>
+
+    <!-- Section: What is an Exception? -->
+    <section>
+      <h3>What is an Exception?</h3>
+      <p>An exception is an event that occurs during the execution of a program, disrupting its normal flow. It is represented as an object that Java throws at runtime.</p>
+      <pre><code>
+public class Example {
+    public static void main(String[] args) {
+        int result = 10 / 0; // Throws ArithmeticException
+    }
+}
+      </code></pre>
+    </section>
+
+    <!-- Section: Need for Exception Handling -->
+    <section>
+      <h3>Need for Exception Handling</h3>
+      <p>Exception handling is essential for managing errors and maintaining the normal flow of the program. It ensures:</p>
+      <ul>
+        <li>Prevention of abrupt termination.</li>
+        <li>Meaningful error messages for debugging.</li>
+        <li>Proper resource release (e.g., closing files).</li>
+      </ul>
+    </section>
+
+    <!-- Section: Handling Exceptions -->
+    <section>
+      <h3>Handling Exceptions Using try and catch Block</h3>
+      <p>The <code>try</code> block contains code that might throw an exception, and the <code>catch</code> block handles the exception.</p>
+      <pre><code>
+try {
+    int result = 10 / 0; // Risky code
+} catch (ArithmeticException e) {
+    System.out.println("Error: Division by zero.");
+}
+      </code></pre>
+    </section>
+
+    <!-- Section: Exception Hierarchy -->
+    <section>
+      <h3>Exception Hierarchy Diagram</h3>
+      <figure>
+        <img src="../images/exception-hierarchy.png" alt="Exception Hierarchy" style="max-width:100%; height:auto;">
+        <figcaption>Java Exception Hierarchy</figcaption>
+      </figure>
+    </section>
+
+    <!-- Section: Exception vs Error -->
+    <section>
+      <h3>Exception vs Error</h3>
+      <ul>
+        <li><strong>Exception:</strong> Recoverable conditions caused by user or programmer errors (e.g., <code>IOException</code>, <code>SQLException</code>).</li>
+        <li><strong>Error:</strong> Irrecoverable conditions caused by system-level failures (e.g., <code>OutOfMemoryError</code>).</li>
+      </ul>
+    </section>
+
+    <!-- Section: Types of Exceptions -->
+    <section>
+      <h3>Types of Exceptions</h3>
+      <h4>Checked Exceptions</h4>
+      <p>These exceptions are checked at compile-time and must be declared in the method signature using <code>throws</code>.</p>
+      <pre><code>
+try {
+    FileReader reader = new FileReader("file.txt"); // Checked Exception
+} catch (IOException e) {
+    e.printStackTrace();
+}
+      </code></pre>
+
+      <h4>Unchecked Exceptions</h4>
+      <p>Unchecked exceptions are checked at runtime and are not verified by the compiler.</p>
+      <pre><code>
+String str = null;
+System.out.println(str.length()); // NullPointerException
+      </code></pre>
+    </section>
+
+    <!-- Section: Unchecked Exception Scenarios -->
+    <section>
+      <h3>Unchecked Exception Scenarios</h3>
+      <ul>
+        <li><code>NullPointerException</code>: Accessing methods on a null object.</li>
+        <li><code>ArrayIndexOutOfBoundsException</code>: Accessing an invalid array index.</li>
+        <li><code>ArithmeticException</code>: Dividing by zero.</li>
+        <li><code>NumberFormatException</code>: Invalid string-to-number conversion.</li>
+        <li><code>ClassCastException</code>: Invalid type casting.</li>
+        <li><code>IllegalArgumentException</code>: Passing illegal arguments to a method.</li>
+        <li><code>ConcurrentModificationException</code>: Modifying a collection while iterating over it.</li>
+      </ul>
+    </section>
+
+    <!-- Section: Checked Exception Scenarios -->
+    <section>
+      <h3>Checked Exception Scenarios</h3>
+      <ul>
+        <li><code>IOException</code>: Errors in file reading/writing.</li>
+        <li><code>SQLException</code>: Issues with database queries.</li>
+      </ul>
+    </section>
+
+    <!-- Section: Handling Unchecked Exceptions -->
+    <section>
+      <h3>Handling Unchecked Exceptions Using Preconditions</h3>
+      <pre><code>
+int divisor = 0;
+if (divisor != 0) {
+    int result = 10 / divisor;
+} else {
+    System.out.println("Error: Divisor cannot be zero.");
+}
+      </code></pre>
+    </section>
+
+    <!-- Section: Exception Handling Keywords -->
+    <section>
+      <h3>Exception Handling Keywords</h3>
+      <ul>
+        <li><strong>try:</strong> Defines a block of code to test for exceptions.</li>
+        <li><strong>catch:</strong> Handles exceptions thrown in the try block.</li>
+        <li><strong>finally:</strong> Executes cleanup code after try/catch, regardless of exceptions.</li>
+        <li><strong>throw:</strong> Used to explicitly throw an exception.</li>
+        <li><strong>throws:</strong> Declares exceptions in a method signature.</li>
+      </ul>
+    </section>
+
+    <!-- Section: throw Keyword -->
+    <section>
+      <h3>throw Keyword</h3>
+      <p>The <code>throw</code> keyword is used to explicitly throw an exception.</p>
+      <pre><code>
+public class ThrowExample {
+    public static void main(String[] args) {
+        throw new ArithmeticException("Manually thrown exception.");
+    }
+}
+      </code></pre>
+    </section>
+
+    <!-- Section: Exception Propagation -->
+    <section>
+      <h3>Exception Propagation</h3>
+      <p>Exception propagation refers to passing exceptions from one method to another. It applies to both checked and unchecked exceptions.</p>
+      <h4>Checked Exception Propagation</h4>
+      <pre><code>
+void method1() throws IOException {
+    FileReader file = new FileReader("file.txt");
+}
+void method2() throws IOException {
+    method1();
+}
+      </code></pre>
+
+      <h4>Unchecked Exception Propagation</h4>
+      <pre><code>
+void method1() {
+    int result = 10 / 0; // ArithmeticException
+}
+void method2() {
+    method1();
+}
+      </code></pre>
+    </section>
+
+    <!-- Section: Customized Exceptions -->
+    <section>
+      <h3>Customized Exceptions</h3>
+      <h4>Customized Checked Exception</h4>
+      <pre><code>
+class CustomCheckedException extends Exception {
+    public CustomCheckedException(String message) {
+        super(message);
+    }
+}
+      </code></pre>
+
+      <h4>Customized Unchecked Exception</h4>
+      <pre><code>
+class CustomUncheckedException extends RuntimeException {
+    public CustomUncheckedException(String message) {
+        super(message);
+    }
+}
+      </code></pre>
+    </section>
+
+    <!-- Section: Summary -->
+    <section>
+      <h3>Summary</h3>
+      <table border="1" cellpadding="10">
+        <thead>
+          <tr>
+            <th>Keyword</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>try</td>
+            <td>Defines the block of code to test for exceptions.</td>
+          </tr>
+          <tr>
+            <td>catch</td>
+            <td>Handles exceptions.</td>
+          </tr>
+          <tr>
+            <td>finally</td>
+            <td>Executes cleanup code after try/catch.</td>
+          </tr>
+          <tr>
+            <td>throw</td>
+            <td>Used to explicitly throw an exception.</td>
+          </tr>
+          <tr>
+            <td>throws</td>
+            <td>Declares exceptions in a method signature.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <script src="../js/scripts.js"></script>
+  <footer>
+    <p>&copy; 2024 Exception Handling in Java Tutorial</p>
+  </footer>
+</body>
+</html>

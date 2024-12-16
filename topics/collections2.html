@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iteration of Collection and Map Objects in Java</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <!-- Placeholder for Header -->
+  <div id="header-container"></div>
+
+  <main>
+    <section>
+      <h2>All Methods in Collection and Map in Java</h2>
+      <p>In Java, <code>Collection</code> and <code>Map</code> are two fundamental interfaces that provide numerous methods for working with data structures like lists, sets, and maps. Below is a detailed explanation of all the methods in each interface.</p>
+
+      <h3>1. Methods in Collection Interface</h3>
+      <p>The <code>Collection</code> interface is the root interface of the Java collection framework. It defines methods for adding, removing, and querying elements in various collections.</p>
+
+      <h4>All Methods in Collection Interface</h4>
+      <ul>
+        <li><code>boolean add(E e)</code> - Adds the specified element to the collection.</li>
+        <li><code>boolean remove(Object o)</code> - Removes the specified element from the collection.</li>
+        <li><code>int size()</code> - Returns the number of elements in the collection.</li>
+        <li><code>boolean isEmpty()</code> - Returns <code>true</code> if the collection is empty.</li>
+        <li><code>boolean contains(Object o)</code> - Returns <code>true</code> if the collection contains the specified element.</li>
+        <li><code>void clear()</code> - Removes all elements from the collection.</li>
+        <li><code>boolean containsAll(Collection<?> c)</code> - Returns <code>true</code> if the collection contains all elements of the specified collection.</li>
+        <li><code>boolean addAll(Collection<? extends E> c)</code> - Adds all elements from the specified collection to the collection.</li>
+        <li><code>boolean removeAll(Collection<?> c)</code> - Removes all elements in the specified collection from the collection.</li>
+        <li><code>boolean retainAll(Collection<?> c)</code> - Retains only the elements in the collection that are contained in the specified collection.</li>
+        <li><code>Object[] toArray()</code> - Returns an array containing all the elements in the collection.</li>
+        <li><code>Iterator<E> iterator()</code> - Returns an iterator over the elements in the collection.</li>
+      </ul>
+
+      <h4>Example: Using Collection Methods</h4>
+      <pre><code>
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class CollectionExample {
+    public static void main(String[] args) {
+        ArrayList<String> fruits = new ArrayList<>();
+        fruits.add("Apple");
+        fruits.add("Banana");
+        fruits.add("Cherry");
+
+        System.out.println("Size: " + fruits.size()); // Size of the collection
+        System.out.println("Contains Banana? " + fruits.contains("Banana")); // Check if "Banana" is in the collection
+
+        // Using iterator to traverse the collection
+        Iterator<String> iterator = fruits.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+
+        fruits.remove("Banana"); // Remove "Banana"
+        System.out.println("After removal: " + fruits);
+
+        fruits.clear(); // Clear the collection
+        System.out.println("Is empty? " + fruits.isEmpty());
+    }
+}
+      </code></pre>
+
+      <h3>2. Methods in Map Interface</h3>
+      <p>The <code>Map</code> interface represents a collection of key-value pairs, such as a dictionary. The methods of the <code>Map</code> interface provide functionality for adding, removing, and querying key-value pairs in a map.</p>
+
+      <h4>All Methods in Map Interface</h4>
+      <ul>
+        <li><code>V put(K key, V value)</code> - Associates the specified value with the specified key.</li>
+        <li><code>V get(Object key)</code> - Returns the value associated with the specified key, or <code>null</code> if no mapping exists.</li>
+        <li><code>V remove(Object key)</code> - Removes the mapping for the specified key.</li>
+        <li><code>boolean containsKey(Object key)</code> - Returns <code>true</code> if the map contains a mapping for the specified key.</li>
+        <li><code>boolean containsValue(Object value)</code> - Returns <code>true</code> if the map maps one or more keys to the specified value.</li>
+        <li><code>boolean isEmpty()</code> - Returns <code>true</code> if the map contains no key-value mappings.</li>
+        <li><code>int size()</code> - Returns the number of key-value mappings in the map.</li>
+        <li><code>void clear()</code> - Removes all key-value mappings from the map.</li>
+        <li><code>Set<K> keySet()</code> - Returns a <code>Set</code> view of the keys contained in the map.</li>
+        <li><code>Collection<V> values()</code> - Returns a <code>Collection</code> view of the values contained in the map.</li>
+        <li><code>Set<Map.Entry<K,V>> entrySet()</code> - Returns a <code>Set</code> view of the key-value mappings contained in the map.</li>
+      </ul>
+
+      <h4>Example: Using Map Methods</h4>
+      <pre><code>
+import java.util.HashMap;
+import java.util.Map;
+
+public class MapExample {
+    public static void main(String[] args) {
+        Map<Integer, String> map = new HashMap<>();
+        map.put(1, "Apple");
+        map.put(2, "Banana");
+        map.put(3, "Cherry");
+
+        System.out.println("Size: " + map.size()); // Size of the map
+        System.out.println("Value for key 2: " + map.get(2)); // Get value by key
+
+        // Iterate over the map
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+
+        map.remove(2); // Remove key-value pair for key 2
+        System.out.println("After removal: " + map);
+
+        System.out.println("Contains key 3? " + map.containsKey(3)); // Check if key 3 exists
+        System.out.println("Contains value Cherry? " + map.containsValue("Cherry")); // Check if value exists
+    }
+}
+      </code></pre>
+
+      <h3>3. Summary of Collection and Map Methods</h3>
+      <p>Both <code>Collection</code> and <code>Map</code> interfaces provide a variety of methods for performing operations like adding, removing, and querying elements. While <code>Collection</code> is used to represent a single set of objects, <code>Map</code> is designed to store key-value pairs.</p>
+      <ul>
+        <li><strong>Collection</strong> is used for handling a group of objects that do not have key-value associations.</li>
+        <li><strong>Map</strong> is suitable for handling key-value pairs, like storing user information with a unique ID as the key.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Iterating Collection Objects in Java</h2>
+      <p>Java provides various ways to iterate through collection objects, such as <code>Enumeration</code>, <code>Iterator</code>, and <code>ListIterator</code>. Here's how to use them:</p>
+
+      <h3>1. Using Enumeration</h3>
+      <p>The <code>Enumeration</code> interface is used to iterate legacy collections like <code>Vector</code> and <code>Hashtable</code>.</p>
+      <pre><code>
+import java.util.Enumeration;
+import java.util.Vector;
+
+public class EnumerationExample {
+    public static void main(String[] args) {
+        Vector<String> vector = new Vector<>();
+        vector.add("Apple");
+        vector.add("Banana");
+        vector.add("Cherry");
+
+        Enumeration<String> enumeration = vector.elements();
+        while (enumeration.hasMoreElements()) {
+            System.out.println(enumeration.nextElement());
+        }
+    }
+}
+      </code></pre>
+
+      <h3>2. Using Iterator</h3>
+      <p>The <code>Iterator</code> interface is used to iterate modern collections like <code>ArrayList</code>, <code>HashSet</code>, etc.</p>
+      <pre><code>
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class IteratorExample {
+    public static void main(String[] args) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Dog");
+        list.add("Cat");
+        list.add("Rabbit");
+
+        Iterator<String> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+    }
+}
+      </code></pre>
+
+      <h3>3. Using ListIterator</h3>
+      <p>The <code>ListIterator</code> interface is used to iterate over <code>List</code> collections like <code>ArrayList</code>, <code>LinkedList</code>. It allows bidirectional traversal.</p>
+      <pre><code>
+import java.util.LinkedList;
+import java.util.ListIterator;
+
+public class ListIteratorExample {
+    public static void main(String[] args) {
+        LinkedList<String> list = new LinkedList<>();
+        list.add("Red");
+        list.add("Green");
+        list.add("Blue");
+
+        ListIterator<String> listIterator = list.listIterator();
+        System.out.println("Forward Traversal:");
+        while (listIterator.hasNext()) {
+            System.out.println(listIterator.next());
+        }
+
+        System.out.println("Backward Traversal:");
+        while (listIterator.hasPrevious()) {
+            System.out.println(listIterator.previous());
+        }
+    }
+}
+      </code></pre>
+
+      <h3>Comparison: Enumeration vs Iterator vs ListIterator</h3>
+      <table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%; text-align: left;">
+        <thead>
+          <tr>
+            <th>Aspect</th>
+            <th>Enumeration</th>
+            <th>Iterator</th>
+            <th>ListIterator</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Applicable Collections</strong></td>
+            <td>Legacy collections like <code>Vector</code>, <code>Hashtable</code>.</td>
+            <td>All modern collections in the <code>java.util</code> framework.</td>
+            <td>List-based collections like <code>ArrayList</code>, <code>LinkedList</code>.</td>
+          </tr>
+          <tr>
+            <td><strong>Traversal</strong></td>
+            <td>Only forward.</td>
+            <td>Only forward.</td>
+            <td>Bidirectional (forward and backward).</td>
+          </tr>
+          <tr>
+            <td><strong>Modification</strong></td>
+            <td>No modification allowed during iteration.</td>
+            <td>Allows element removal during iteration using <code>remove()</code>.</td>
+            <td>Allows addition, removal, and replacement of elements during iteration.</td>
+          </tr>
+          <tr>
+            <td><strong>Fail-Fast Behavior</strong></td>
+            <td>Not fail-fast.</td>
+            <td>Fail-fast (throws <code>ConcurrentModificationException</code>).</td>
+            <td>Fail-fast (throws <code>ConcurrentModificationException</code>).</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Iterating Map Objects in Java</h2>
+      <p>Maps in Java cannot be directly iterated as they are not part of the <code>Collection</code> interface. However, we can iterate through their keys, values, or key-value pairs.</p>
+
+      <h3>1. Iterating Using EntrySet</h3>
+      <pre><code>
+import java.util.HashMap;
+import java.util.Map;
+
+public class MapEntrySetExample {
+    public static void main(String[] args) {
+        Map<Integer, String> map = new HashMap<>();
+        map.put(1, "One");
+        map.put(2, "Two");
+        map.put(3, "Three");
+
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+            System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+        }
+    }
+}
+      </code></pre>
+
+      <h3>2. Iterating Using KeySet</h3>
+      <pre><code>
+import java.util.HashMap;
+import java.util.Map;
+
+public class MapKeySetExample {
+    public static void main(String[] args) {
+        Map<Integer, String> map = new HashMap<>();
+        map.put(1, "Apple");
+        map.put(2, "Banana");
+        map.put(3, "Cherry");
+
+        for (Integer key : map.keySet()) {
+            System.out.println("Key: " + key + ", Value: " + map.get(key));
+        }
+    }
+}
+      </code></pre>
+
+      <h3>3. Iterating Using Values</h3>
+      <pre><code>
+import java.util.HashMap;
+import java.util.Map;
+
+public class MapValuesExample {
+    public static void main(String[] args) {
+        Map<Integer, String> map = new HashMap<>();
+        map.put(1, "Red");
+        map.put(2, "Green");
+        map.put(3, "Blue");
+
+        for (String value : map.values()) {
+            System.out.println("Value: " + value);
+        }
+    }
+}
+      </code></pre>
+    </section>
+    <section>
+      <h2>User-Defined Objects with Collections</h2>
+      <p>In Java, user-defined objects can be used with collections like <code>List</code>, <code>Set</code>, and <code>Map</code>. Below are examples demonstrating how to use them effectively.</p>
+
+      <h3>1. User-Defined Objects with List</h3>
+      <p>A <code>List</code> can store multiple user-defined objects and maintain the insertion order.</p>
+      <pre><code>
+import java.util.ArrayList;
+
+class Student {
+    private int rollNo;
+    private String name;
+
+    public Student(int rollNo, String name) {
+        this.rollNo = rollNo;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{rollNo=" + rollNo + ", name='" + name + "'}";
+    }
+}
+
+public class ListExample {
+    public static void main(String[] args) {
+        ArrayList<Student> students = new ArrayList<>();
+        students.add(new Student(1, "Alice"));
+        students.add(new Student(2, "Bob"));
+        students.add(new Student(3, "Charlie"));
+
+        for (Student student : students) {
+            System.out.println(student);
+        }
+    }
+}
+      </code></pre>
+
+      <h3>2. User-Defined Objects with HashSet and TreeSet</h3>
+      <p>A <code>HashSet</code> is used to store unique objects, and a <code>TreeSet</code> is used for storing unique objects in a sorted order. For <code>TreeSet</code>, the class must implement <code>Comparable</code> or a custom <code>Comparator</code> must be provided.</p>
+
+      <h4>Example: Using HashSet</h4>
+      <pre><code>
+import java.util.HashSet;
+
+class Employee {
+    private int id;
+    private String name;
+
+    public Employee(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{id=" + id + ", name='" + name + "'}";
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Employee employee = (Employee) obj;
+        return id == employee.id;
+    }
+}
+
+public class HashSetExample {
+    public static void main(String[] args) {
+        HashSet<Employee> employees = new HashSet<>();
+        employees.add(new Employee(1, "Alice"));
+        employees.add(new Employee(2, "Bob"));
+        employees.add(new Employee(1, "Alice")); // Duplicate, won't be added
+
+        for (Employee employee : employees) {
+            System.out.println(employee);
+        }
+    }
+}
+      </code></pre>
+
+      <h4>Example: Using TreeSet</h4>
+      <pre><code>
+import java.util.TreeSet;
+
+class Product implements Comparable<Product> {
+    private int id;
+    private String name;
+
+    public Product(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    @Override
+    public int compareTo(Product other) {
+        return this.id - other.id; // Sorting by ID
+    }
+
+    @Override
+    public String toString() {
+        return "Product{id=" + id + ", name='" + name + "'}";
+    }
+}
+
+public class TreeSetExample {
+    public static void main(String[] args) {
+        TreeSet<Product> products = new TreeSet<>();
+        products.add(new Product(3, "Laptop"));
+        products.add(new Product(1, "Phone"));
+        products.add(new Product(2, "Tablet"));
+
+        for (Product product : products) {
+            System.out.println(product);
+        }
+    }
+}
+      </code></pre>
+
+      <h3>3. User-Defined Objects with HashMap and TreeMap</h3>
+      <p>A <code>HashMap</code> is used to store key-value pairs, while a <code>TreeMap</code> stores key-value pairs in a sorted order based on the keys.</p>
+
+      <h4>Example: Using HashMap</h4>
+      <pre><code>
+import java.util.HashMap;
+
+class Department {
+    private int id;
+    private String name;
+
+    public Department(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Department{id=" + id + ", name='" + name + "'}";
+    }
+}
+
+public class HashMapExample {
+    public static void main(String[] args) {
+        HashMap<Department, String> departmentMap = new HashMap<>();
+        departmentMap.put(new Department(1, "HR"), "Alice");
+        departmentMap.put(new Department(2, "Finance"), "Bob");
+
+        for (var entry : departmentMap.entrySet()) {
+            System.out.println("Department: " + entry.getKey() + ", Employee: " + entry.getValue());
+        }
+    }
+}
+      </code></pre>
+
+      <h4>Example: Using TreeMap</h4>
+      <pre><code>
+import java.util.TreeMap;
+
+class Course implements Comparable<Course> {
+    private int id;
+    private String name;
+
+    public Course(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    @Override
+    public int compareTo(Course other) {
+        return this.id - other.id; // Sorting by ID
+    }
+
+    @Override
+    public String toString() {
+        return "Course{id=" + id + ", name='" + name + "'}";
+    }
+}
+
+public class TreeMapExample {
+    public static void main(String[] args) {
+        TreeMap<Course, String> courseMap = new TreeMap<>();
+        courseMap.put(new Course(3, "Mathematics"), "Alice");
+        courseMap.put(new Course(1, "Physics"), "Bob");
+        courseMap.put(new Course(2, "Chemistry"), "Charlie");
+
+        for (var entry : courseMap.entrySet()) {
+            System.out.println("Course: " + entry.getKey() + ", Student: " + entry.getValue());
+        }
+    }
+}
+      </code></pre>
+    </section>
+    <section>
+      <h2>HashSet Internal Implementation in Java</h2>
+      <p>The <code>HashSet</code> in Java is part of the <code>java.util</code> package and is used to store unique elements. It internally uses a <code>HashMap</code> to achieve this functionality.</p>
+
+      <h3>1. How HashSet Works Internally</h3>
+      <ul>
+        <li>When you add an element to a <code>HashSet</code>, it internally calls the <code>hashCode()</code> method of the object to compute a hash value.</li>
+        <li>This hash value determines the bucket where the element will be stored.</li>
+        <li>To ensure uniqueness, <code>HashSet</code> also calls the <code>equals()</code> method to check if an object with the same value already exists in the bucket.</li>
+      </ul>
+      <p>The uniqueness of elements in a <code>HashSet</code> depends on the proper implementation of the <code>hashCode()</code> and <code>equals()</code> methods in the objects being stored.</p>
+
+      <h3>2. Why Override <code>hashCode()</code> and <code>equals()</code></h3>
+      <p>If you don't override <code>hashCode()</code> and <code>equals()</code>, the default implementation from the <code>Object</code> class will be used. This may result in incorrect behavior for user-defined objects:</p>
+      <ul>
+        <li>Default <code>hashCode()</code>: Generates a hash code based on the memory address of the object.</li>
+        <li>Default <code>equals()</code>: Compares memory addresses instead of content.</li>
+      </ul>
+      <p>This can lead to duplicate objects being stored in a <code>HashSet</code>, as the hash values and equality checks would not work correctly for content-based comparison.</p>
+
+      <h3>3. Example: Without Overriding</h3>
+      <pre><code>
+import java.util.HashSet;
+
+class Employee {
+    private int id;
+    private String name;
+
+    public Employee(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{id=" + id + ", name='" + name + "'}";
+    }
+}
+
+public class WithoutOverrideExample {
+    public static void main(String[] args) {
+        HashSet<Employee> employees = new HashSet<>();
+        employees.add(new Employee(1, "Alice"));
+        employees.add(new Employee(1, "Alice")); // Treated as a different object
+
+        System.out.println("HashSet Contents:");
+        for (Employee employee : employees) {
+            System.out.println(employee);
+        }
+    }
+}
+      </code></pre>
+      <p><strong>Output:</strong> The duplicate object will be added, as the default <code>hashCode()</code> and <code>equals()</code> do not compare content.</p>
+
+      <h3>4. Example: With Overriding</h3>
+      <pre><code>
+import java.util.HashSet;
+
+class Employee {
+    private int id;
+    private String name;
+
+    public Employee(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    @Override
+    public int hashCode() {
+        return id; // Generate hash code based on 'id'
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Employee employee = (Employee) obj;
+        return id == employee.id && name.equals(employee.name);
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{id=" + id + ", name='" + name + "'}";
+    }
+}
+
+public class WithOverrideExample {
+    public static void main(String[] args) {
+        HashSet<Employee> employees = new HashSet<>();
+        employees.add(new Employee(1, "Alice"));
+        employees.add(new Employee(1, "Alice")); // Treated as duplicate and not added
+
+        System.out.println("HashSet Contents:");
+        for (Employee employee : employees) {
+            System.out.println(employee);
+        }
+    }
+}
+      </code></pre>
+      <p><strong>Output:</strong> The duplicate object will not be added, as the overridden <code>hashCode()</code> and <code>equals()</code> methods ensure proper comparison.</p>
+
+      <h3>5. Key Points</h3>
+      <ul>
+        <li>Always override <code>hashCode()</code> and <code>equals()</code> when using user-defined objects in <code>HashSet</code>, <code>HashMap</code>, or similar collections.</li>
+        <li>Ensure that the implementation of <code>hashCode()</code> and <code>equals()</code> is consistent:
+          <ul>
+            <li>If two objects are equal according to <code>equals()</code>, they must have the same <code>hashCode()</code>.</li>
+            <li>If two objects have the same <code>hashCode()</code>, they may or may not be equal according to <code>equals()</code>.</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2>Comparable vs Comparator in Java</h2>
+      <p>Both <code>Comparable</code> and <code>Comparator</code> are interfaces in Java that allow sorting of objects. They are part of the <code>java.lang</code> and <code>java.util</code> packages respectively.</p>
+
+      <h3>1. Key Differences</h3>
+      <table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%; text-align: left;">
+        <thead>
+          <tr>
+            <th>Aspect</th>
+            <th>Comparable</th>
+            <th>Comparator</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Definition</strong></td>
+            <td>Defines the natural ordering of objects.</td>
+            <td>Defines custom ordering of objects.</td>
+          </tr>
+          <tr>
+            <td><strong>Method</strong></td>
+            <td><code>compareTo(Object o)</code> - Compares the current object with another object.</td>
+            <td><code>compare(Object o1, Object o2)</code> - Compares two objects.</td>
+          </tr>
+          <tr>
+            <td><strong>Package</strong></td>
+            <td><code>java.lang</code></td>
+            <td><code>java.util</code></td>
+          </tr>
+          <tr>
+            <td><strong>Code Modification</strong></td>
+            <td>Requires modifying the class whose objects need sorting.</td>
+            <td>No modification needed in the class; sorting logic is external.</td>
+          </tr>
+          <tr>
+            <td><strong>Sorting Type</strong></td>
+            <td>Used for natural ordering (single sorting logic).</td>
+            <td>Used for custom sorting (multiple sorting logics).</td>
+          </tr>
+          <tr>
+            <td><strong>Example</strong></td>
+            <td>Sorting employees by ID.</td>
+            <td>Sorting employees by name or salary.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2. Example: Using Comparable</h3>
+      <p>The <code>Comparable</code> interface is implemented by a class to define its natural ordering.</p>
+      <pre><code>
+import java.util.ArrayList;
+import java.util.Collections;
+
+class Employee implements Comparable<Employee> {
+    private int id;
+    private String name;
+
+    public Employee(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    @Override
+    public int compareTo(Employee other) {
+        return this.id - other.id; // Natural ordering by ID
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{id=" + id + ", name='" + name + "'}";
+    }
+}
+
+public class ComparableExample {
+    public static void main(String[] args) {
+        ArrayList<Employee> employees = new ArrayList<>();
+        employees.add(new Employee(3, "Alice"));
+        employees.add(new Employee(1, "Bob"));
+        employees.add(new Employee(2, "Charlie"));
+
+        Collections.sort(employees); // Uses compareTo method
+        for (Employee employee : employees) {
+            System.out.println(employee);
+        }
+    }
+}
+      </code></pre>
+
+      <h3>3. Example: Using Comparator</h3>
+      <p>The <code>Comparator</code> interface allows sorting using custom logic.</p>
+      <h4>Sorting by Name</h4>
+      <pre><code>
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+class Employee {
+    private int id;
+    private String name;
+
+    public Employee(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{id=" + id + ", name='" + name + "'}";
+    }
+}
+
+class NameComparator implements Comparator<Employee> {
+    @Override
+    public int compare(Employee e1, Employee e2) {
+        return e1.getName().compareTo(e2.getName()); // Custom ordering by name
+    }
+}
+
+public class ComparatorExample {
+    public static void main(String[] args) {
+        ArrayList<Employee> employees = new ArrayList<>();
+        employees.add(new Employee(3, "Alice"));
+        employees.add(new Employee(1, "Charlie"));
+        employees.add(new Employee(2, "Bob"));
+
+        Collections.sort(employees, new NameComparator()); // Uses custom comparator
+        for (Employee employee : employees) {
+            System.out.println(employee);
+        }
+    }
+}
+      </code></pre>
+
+      <h4>Sorting by Salary</h4>
+      <pre><code>
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+class Employee {
+    private int id;
+    private String name;
+    private double salary;
+
+    public Employee(int id, String name, double salary) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{id=" + id + ", name='" + name + "', salary=" + salary + "}";
+    }
+}
+
+class SalaryComparator implements Comparator<Employee> {
+    @Override
+    public int compare(Employee e1, Employee e2) {
+        return Double.compare(e1.getSalary(), e2.getSalary()); // Custom ordering by salary
+    }
+}
+
+public class ComparatorSalaryExample {
+    public static void main(String[] args) {
+        ArrayList<Employee> employees = new ArrayList<>();
+        employees.add(new Employee(3, "Alice", 50000));
+        employees.add(new Employee(1, "Charlie", 70000));
+        employees.add(new Employee(2, "Bob", 60000));
+
+        Collections.sort(employees, new SalaryComparator()); // Uses custom comparator
+        for (Employee employee : employees) {
+            System.out.println(employee);
+        }
+    }
+}
+      </code></pre>
+
+      <h3>4. When to Use</h3>
+      <ul>
+        <li>Use <code>Comparable</code> when natural ordering is required and only one sorting logic is sufficient.</li>
+        <li>Use <code>Comparator</code> when custom sorting or multiple sorting logics are needed.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Collections and Arrays Class in Java</h2>
+      <p>In Java, the <code>Collections</code> class and the <code>Arrays</code> class provide utility methods for working with collections and arrays. Here’s an overview of both:</p>
+
+      <h3>1. Collections Class</h3>
+      <p>The <code>Collections</code> class is a utility class in <code>java.util</code> that provides static methods to operate on or return collections. It includes methods for sorting, searching, reversing, shuffling, and more.</p>
+
+      <h4>Key Methods of the Collections Class</h4>
+      <ul>
+        <li><code>sort(List<T> list)</code> - Sorts the elements of the list in natural order or using a comparator.</li>
+        <li><code>shuffle(List<?> list)</code> - Randomly permutes the elements of the list.</li>
+        <li><code>reverse(List<?> list)</code> - Reverses the elements in the list.</li>
+        <li><code>max(Collection<? extends T> coll)</code> - Returns the maximum element in a collection.</li>
+        <li><code>min(Collection<? extends T> coll)</code> - Returns the minimum element in a collection.</li>
+        <li><code>unmodifiableList(List<? extends T> list)</code> - Returns an unmodifiable view of the specified list.</li>
+      </ul>
+
+      <h4>Example: Using Collections Class</h4>
+      <pre><code>
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class CollectionsExample {
+    public static void main(String[] args) {
+        ArrayList<Integer> numbers = new ArrayList<>();
+        numbers.add(5);
+        numbers.add(3);
+        numbers.add(8);
+        numbers.add(1);
+
+        // Sorting the list
+        Collections.sort(numbers);
+        System.out.println("Sorted List: " + numbers);
+
+        // Shuffling the list
+        Collections.shuffle(numbers);
+        System.out.println("Shuffled List: " + numbers);
+
+        // Reversing the list
+        Collections.reverse(numbers);
+        System.out.println("Reversed List: " + numbers);
+
+        // Finding the maximum element
+        System.out.println("Max element: " + Collections.max(numbers));
+    }
+}
+      </code></pre>
+
+      <h3>2. Arrays Class</h3>
+      <p>The <code>Arrays</code> class, also in <code>java.util</code>, provides static methods for manipulating arrays (such as sorting and searching).</p>
+
+      <h4>Key Methods of the Arrays Class</h4>
+      <ul>
+        <li><code>sort(int[] a)</code> - Sorts the specified array into ascending numerical order.</li>
+        <li><code>binarySearch(int[] a, int key)</code> - Searches the specified array for the specified value using the binary search algorithm.</li>
+        <li><code>fill(int[] a, int val)</code> - Assigns the specified value to each element of the specified array.</li>
+        <li><code>equals(int[] a, int[] b)</code> - Compares the specified arrays for equality.</li>
+        <li><code>toString(int[] a)</code> - Returns a string representation of the specified array.</li>
+      </ul>
+
+      <h4>Example: Using Arrays Class</h4>
+      <pre><code>
+import java.util.Arrays;
+
+public class ArraysExample {
+    public static void main(String[] args) {
+        int[] numbers = {5, 3, 8, 1, 2};
+
+        // Sorting the array
+        Arrays.sort(numbers);
+        System.out.println("Sorted Array: " + Arrays.toString(numbers));
+
+        // Searching for a value using binary search
+        int index = Arrays.binarySearch(numbers, 3);
+        System.out.println("Index of 3: " + index);
+
+        // Filling the array with a specific value
+        Arrays.fill(numbers, 0);
+        System.out.println("Array after fill: " + Arrays.toString(numbers));
+
+        // Comparing two arrays
+        int[] anotherArray = {0, 0, 0, 0, 0};
+        System.out.println("Arrays are equal: " + Arrays.equals(numbers, anotherArray));
+    }
+}
+      </code></pre>
+
+      <h3>3. Differences Between Collections Class and Arrays Class</h3>
+      <table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%; text-align: left;">
+        <thead>
+          <tr>
+            <th>Aspect</th>
+            <th>Collections Class</th>
+            <th>Arrays Class</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Purpose</strong></td>
+            <td>Provides utility methods for manipulating collections (e.g., List, Set).</td>
+            <td>Provides utility methods for manipulating arrays.</td>
+          </tr>
+          <tr>
+            <td><strong>Applicable Type</strong></td>
+            <td>Works with any collection class that implements <code>java.util.Collection</code>.</td>
+            <td>Works specifically with arrays (primitive or object arrays).</td>
+          </tr>
+          <tr>
+            <td><strong>Common Methods</strong></td>
+            <td><code>sort(), shuffle(), reverse(), max(), min()</code></td>
+            <td><code>sort(), binarySearch(), fill(), toString(), equals()</code></td>
+          </tr>
+          <tr>
+            <td><strong>Null Elements</strong></td>
+            <td>Can handle null elements in collections like List and Set.</td>
+            <td>Cannot handle null elements for primitive type arrays.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>4. Summary</h3>
+      <p>The <code>Collections</code> class is used for operations on collections like <code>List</code>, <code>Set</code>, and <code>Queue</code>, while the <code>Arrays</code> class is focused on operations related to arrays. The methods provided by both classes help you manipulate and perform operations on data structures effectively.</p>
+    </section>
+    
+   
+  </main>
+
+  <!-- Placeholder for Footer -->
+  <div id="footer-container"></div>
+
+  <script src="../js/scripts.js"></script>
+</body>
+</html>

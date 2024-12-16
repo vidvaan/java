@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Java IO Streams and File Management</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <!-- Placeholder for Header -->
+  <div id="header-container"></div>
+
+  <main>
+    <section>
+      <h2>Java IO Streams and File Management</h2>
+
+      <h3>IO Streams in Java</h3>
+      <p>In Java, IO streams are used to perform input and output operations. There are two main types of streams: <strong>Byte Streams</strong> and <strong>Character Streams</strong>.</p>
+
+      <h4>1. Byte Streams</h4>
+      <p>Byte Streams are used to handle raw binary data, such as image files, audio files, etc. The most common byte stream classes are <code>InputStream</code> and <code>OutputStream</code>, along with their subclasses.</p>
+      
+      <h4>2. Character Streams</h4>
+      <p>Character Streams are designed to handle data in the form of characters, making them easier to use for text files. The two main classes are <code>Reader</code> and <code>Writer</code>, along with their subclasses.</p>
+
+      <table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%; text-align: left;">
+        <thead>
+          <tr>
+            <th>Aspect</th>
+            <th>Byte Streams</th>
+            <th>Character Streams</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Data Type</strong></td>
+            <td>Handles raw binary data such as images, audio, and other non-text files.</td>
+            <td>Handles character data like text files, with support for encoding/decoding.</td>
+          </tr>
+          <tr>
+            <td><strong>Classes</strong></td>
+            <td>
+              <ul>
+                <li><code>InputStream</code> (e.g., <code>FileInputStream</code>)</li>
+                <li><code>OutputStream</code> (e.g., <code>FileOutputStream</code>)</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li><code>Reader</code> (e.g., <code>FileReader</code>)</li>
+                <li><code>Writer</code> (e.g., <code>FileWriter</code>)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Unit of Data</strong></td>
+            <td>Processes data in bytes (8 bits).</td>
+            <td>Processes data in characters (16 bits in Java, supporting Unicode).</td>
+          </tr>
+          <tr>
+            <td><strong>Encoding/Decoding</strong></td>
+            <td>No support for character encoding or decoding.</td>
+            <td>Supports character encoding and decoding (e.g., UTF-8, UTF-16).</td>
+          </tr>
+          <tr>
+            <td><strong>Usage</strong></td>
+            <td>
+              <ul>
+                <li>Non-text data like images, videos, or binary files.</li>
+                <li>Low-level I/O operations.</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>Text data like documents or strings.</li>
+                <li>Higher-level I/O operations.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Examples</strong></td>
+            <td>
+              <ul>
+                <li>Reading an image file.</li>
+                <li>Writing a binary file.</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>Reading a text file.</li>
+                <li>Writing a string to a file.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Performance</strong></td>
+            <td>Faster for binary data.</td>
+            <td>Slower for binary data but appropriate for text data.</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Write and Read Files Using Byte Streams</h3>
+      <h4>Writing to a file using Byte Stream:</h4>
+      <pre><code>
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class ByteStreamExample {
+    public static void main(String[] args) {
+        try (FileOutputStream fos = new FileOutputStream("output.txt")) {
+            String data = "This is an example of Byte Stream.";
+            fos.write(data.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+      </code></pre>
+
+      <h4>Reading from a file using Byte Stream:</h4>
+      <pre><code>
+import java.io.FileInputStream;
+import java.io.IOException;
+
+public class ByteStreamExample {
+    public static void main(String[] args) {
+        try (FileInputStream fis = new FileInputStream("output.txt")) {
+            int byteData;
+            while ((byteData = fis.read()) != -1) {
+                System.out.print((char) byteData);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+      </code></pre>
+
+      <h3>Write and Read Files Using Character Streams</h3>
+      <h4>Writing to a file using Character Stream:</h4>
+      <pre><code>
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class CharStreamExample {
+    public static void main(String[] args) {
+        try (FileWriter writer = new FileWriter("output.txt")) {
+            String text = "This is an example of Character Stream.";
+            writer.write(text);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+      </code></pre>
+
+      <h4>Reading from a file using Character Stream:</h4>
+      <pre><code>
+import java.io.FileReader;
+import java.io.IOException;
+
+public class CharStreamExample {
+    public static void main(String[] args) {
+        try (FileReader reader = new FileReader("output.txt")) {
+            int charData;
+            while ((charData = reader.read()) != -1) {
+                System.out.print((char) charData);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+      </code></pre>
+
+      <h3>Buffered Streams</h3>
+      <p>Buffered Streams provide a way to efficiently read and write data using a buffer. They reduce the number of I/O operations by reading or writing large chunks of data at once. Common buffered classes include <code>BufferedReader</code>, <code>BufferedWriter</code>, <code>BufferedInputStream</code>, and <code>BufferedOutputStream</code>.</p>
+
+      <h4>BufferedReader and BufferedWriter Example:</h4>
+      <pre><code>
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class BufferedStreamExample {
+    public static void main(String[] args) {
+        try (BufferedReader br = new BufferedReader(new FileReader("output.txt"));
+             BufferedWriter bw = new BufferedWriter(new FileWriter("output_copy.txt"))) {
+             
+            String line;
+            while ((line = br.readLine()) != null) {
+                bw.write(line);
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+      </code></pre>
+
+      <h2>Serialization and Deserialization in Java</h2>
+      <p><strong>Serialization</strong> is the process of converting an object into a byte stream for storage in a file or transmission over a network. <strong>Deserialization</strong> is the reverse process of reading the object back from its serialized byte stream.</p>
+
+      <h3>Key Points</h3>
+      <ul>
+        <li>The <code>Serializable</code> interface must be implemented by a class to make its objects serializable.</li>
+        <li>Serialization is performed using the <code>ObjectOutputStream</code> class.</li>
+        <li>Deserialization is performed using the <code>ObjectInputStream</code> class.</li>
+      </ul>
+
+      <h4>Serialization Example:</h4>
+      <pre><code>
+import java.io.*;
+
+class Person implements Serializable {
+    String name;
+    int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+public class SerializationExample {
+    public static void main(String[] args) {
+        Person person = new Person("John Doe", 25);
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("person.ser"))) {
+            oos.writeObject(person);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+      </code></pre>
+
+      <h4>Deserialization Example:</h4>
+      <pre><code>
+import java.io.*;
+
+class Person implements Serializable {
+    String name;
+    int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+public class DeserializationExample {
+    public static void main(String[] args) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("person.ser"))) {
+            Person person = (Person) ois.readObject();
+            System.out.println("Name: " + person.name + ", Age: " + person.age);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+}
+      </code></pre>
+
+      <h3>Transient Keyword</h3>
+      <p>The <code>transient</code> keyword is used to exclude fields from the serialization process. Fields marked as <code>transient</code> are not included in the serialized object.</p>
+
+
+      <h4>Example of Transient Keyword:</h4>
+      <pre><code>
+import java.io.*;
+
+class Employee implements Serializable {
+    String name;
+    transient int age;
+
+    public Employee(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+public class TransientExample {
+    public static void main(String[] args) {
+        Employee emp = new Employee("Alice", 30);
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("employee.ser"))) {
+            oos.writeObject(emp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+      </code></pre>
+
+      <h3>SerialVersionUID</h3>
+      <p>The <code>serialVersionUID</code> is a unique identifier for a serializable class. It ensures compatibility during deserialization by matching the serialized object's <code>serialVersionUID</code> with the class's <code>serialVersionUID</code>.</p>
+      <pre><code>
+class Product implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private String name;
+    private double price;
+
+    public Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+}
+      </code></pre>
+
+      <h3>Custom Serialization</h3>
+      <p>Custom serialization allows you to define how an object should be serialized or deserialized by implementing the <code>writeObject</code> and <code>readObject</code> methods.</p>
+
+      <h4>Custom Serialization Example:</h4>
+      <pre><code>
+import java.io.*;
+
+class CustomPerson implements Serializable {
+    String name;
+    int age;
+
+    public CustomPerson(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    private void writeObject(ObjectOutputStream oos) throws IOException {
+        oos.defaultWriteObject();
+        oos.writeInt(age + 5); // custom logic during serialization
+    }
+
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        ois.defaultReadObject();
+        this.age = ois.readInt() - 5; // custom logic during deserialization
+    }
+}
+
+public class CustomSerializationExample {
+    public static void main(String[] args) {
+        CustomPerson person = new CustomPerson("Bob", 40);
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("customPerson.ser"))) {
+            oos.writeObject(person);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+      </code></pre>
+    </section>
+    <section>
+        <h2>Managing Files Using <code>java.io.File</code></h2>
+        <p>The <code>java.io.File</code> class provides methods for creating, deleting, and inspecting files and directories in Java. Below are examples of common file management operations using this class.</p>
+  
+        <h3>1. Creating Files and Directories</h3>
+        <p>You can create files and directories using the <code>createNewFile()</code> and <code>mkdir()</code> methods, respectively.</p>
+  
+        <h4>Example: Creating a File</h4>
+        <pre><code>
+  import java.io.File;
+  import java.io.IOException;
+  
+  public class FileExample {
+      public static void main(String[] args) {
+          File file = new File("example.txt");
+          try {
+              if (file.createNewFile()) {
+                  System.out.println("File created: " + file.getName());
+              } else {
+                  System.out.println("File already exists.");
+              }
+          } catch (IOException e) {
+              e.printStackTrace();
+          }
+      }
+  }
+        </code></pre>
+  
+        <h4>Example: Creating a Directory</h4>
+        <pre><code>
+  import java.io.File;
+  
+  public class DirectoryExample {
+      public static void main(String[] args) {
+          File directory = new File("exampleDir");
+          if (directory.mkdir()) {
+              System.out.println("Directory created: " + directory.getName());
+          } else {
+              System.out.println("Directory already exists.");
+          }
+      }
+  }
+        </code></pre>
+  
+        <h3>2. Deleting Files and Directories</h3>
+        <p>Files and directories can be deleted using the <code>delete()</code> method. Note that a directory must be empty to be deleted.</p>
+  
+        <h4>Example: Deleting a File</h4>
+        <pre><code>
+  import java.io.File;
+  
+  public class DeleteFileExample {
+      public static void main(String[] args) {
+          File file = new File("example.txt");
+          if (file.delete()) {
+              System.out.println("File deleted: " + file.getName());
+          } else {
+              System.out.println("Failed to delete the file.");
+          }
+      }
+  }
+        </code></pre>
+  
+        <h4>Example: Deleting a Directory</h4>
+        <pre><code>
+  import java.io.File;
+  
+  public class DeleteDirectoryExample {
+      public static void main(String[] args) {
+          File directory = new File("exampleDir");
+          if (directory.delete()) {
+              System.out.println("Directory deleted: " + directory.getName());
+          } else {
+              System.out.println("Failed to delete the directory. Ensure it is empty.");
+          }
+      }
+  }
+        </code></pre>
+  
+        <h3>3. Listing Files and Directories</h3>
+        <p>The <code>list()</code> method returns an array of strings naming the files and directories in the directory represented by the <code>File</code> object.</p>
+  
+        <h4>Example: Listing Files in a Directory</h4>
+        <pre><code>
+  import java.io.File;
+  
+  public class ListFilesExample {
+      public static void main(String[] args) {
+          File directory = new File("exampleDir");
+          if (directory.isDirectory()) {
+              String[] files = directory.list();
+              if (files != null) {
+                  System.out.println("Files in " + directory.getName() + ":");
+                  for (String file : files) {
+                      System.out.println(file);
+                  }
+              }
+          } else {
+              System.out.println(directory.getName() + " is not a directory.");
+          }
+      }
+  }
+        </code></pre>
+  
+        <h3>4. Checking File Properties</h3>
+        <p>Use methods like <code>exists()</code>, <code>isFile()</code>, <code>isDirectory()</code>, and <code>length()</code> to check file properties.</p>
+  
+        <h4>Example: File Properties</h4>
+        <pre><code>
+  import java.io.File;
+  
+  public class FilePropertiesExample {
+      public static void main(String[] args) {
+          File file = new File("example.txt");
+          if (file.exists()) {
+              System.out.println("File Name: " + file.getName());
+              System.out.println("Absolute Path: " + file.getAbsolutePath());
+              System.out.println("Is Writable: " + file.canWrite());
+              System.out.println("Is Readable: " + file.canRead());
+              System.out.println("File Size: " + file.length() + " bytes");
+          } else {
+              System.out.println("The file does not exist.");
+          }
+      }
+  }
+        </code></pre>
+      </section>
+      <section>
+        <h2>Managing Files Using <code>java.nio.file</code></h2>
+        <p>The <code>java.nio.file</code> package provides modern and flexible methods for managing files and directories. It includes classes like <code>Path</code>, <code>Paths</code>, and <code>Files</code> that simplify file operations.</p>
+  
+        <h3>1. Creating Files and Directories</h3>
+        <p>Use the <code>Files.createFile()</code> and <code>Files.createDirectory()</code> methods to create files and directories.</p>
+  
+        <h4>Example: Creating a File</h4>
+        <pre><code>
+  import java.nio.file.*;
+  
+  public class CreateFileExample {
+      public static void main(String[] args) {
+          Path filePath = Paths.get("example.txt");
+          try {
+              Files.createFile(filePath);
+              System.out.println("File created: " + filePath.getFileName());
+          } catch (FileAlreadyExistsException e) {
+              System.out.println("File already exists.");
+          } catch (IOException e) {
+              e.printStackTrace();
+          }
+      }
+  }
+        </code></pre>
+  
+        <h4>Example: Creating a Directory</h4>
+        <pre><code>
+  import java.nio.file.*;
+  
+  public class CreateDirectoryExample {
+      public static void main(String[] args) {
+          Path dirPath = Paths.get("exampleDir");
+          try {
+              Files.createDirectory(dirPath);
+              System.out.println("Directory created: " + dirPath.getFileName());
+          } catch (FileAlreadyExistsException e) {
+              System.out.println("Directory already exists.");
+          } catch (IOException e) {
+              e.printStackTrace();
+          }
+      }
+  }
+        </code></pre>
+  
+        <h3>2. Deleting Files and Directories</h3>
+        <p>Use the <code>Files.delete()</code> method to delete files and directories. Note that a directory must be empty before it can be deleted.</p>
+  
+        <h4>Example: Deleting a File</h4>
+        <pre><code>
+  import java.nio.file.*;
+  
+  public class DeleteFileExample {
+      public static void main(String[] args) {
+          Path filePath = Paths.get("example.txt");
+          try {
+              Files.delete(filePath);
+              System.out.println("File deleted: " + filePath.getFileName());
+          } catch (NoSuchFileException e) {
+              System.out.println("File does not exist.");
+          } catch (IOException e) {
+              e.printStackTrace();
+          }
+      }
+  }
+        </code></pre>
+  
+        <h4>Example: Deleting a Directory</h4>
+        <pre><code>
+  import java.nio.file.*;
+  
+  public class DeleteDirectoryExample {
+      public static void main(String[] args) {
+          Path dirPath = Paths.get("exampleDir");
+          try {
+              Files.delete(dirPath);
+              System.out.println("Directory deleted: " + dirPath.getFileName());
+          } catch (NoSuchFileException e) {
+              System.out.println("Directory does not exist.");
+          } catch (DirectoryNotEmptyException e) {
+              System.out.println("Directory is not empty.");
+          } catch (IOException e) {
+              e.printStackTrace();
+          }
+      }
+  }
+        </code></pre>
+  
+        <h3>3. Listing Files and Directories</h3>
+        <p>The <code>DirectoryStream</code> interface allows iterating over the entries in a directory.</p>
+  
+        <h4>Example: Listing Files in a Directory</h4>
+        <pre><code>
+  import java.nio.file.*;
+  import java.io.IOException;
+  
+  public class ListFilesExample {
+      public static void main(String[] args) {
+          Path dirPath = Paths.get("exampleDir");
+          try (DirectoryStream<Path> stream = Files.newDirectoryStream(dirPath)) {
+              for (Path entry : stream) {
+                  System.out.println(entry.getFileName());
+              }
+          } catch (IOException e) {
+              e.printStackTrace();
+          }
+      }
+  }
+        </code></pre>
+  
+        <h3>4. Reading and Writing Files</h3>
+        <p>Use <code>Files.readAllLines()</code> and <code>Files.write()</code> for simple file reading and writing operations.</p>
+  
+        <h4>Example: Writing to a File</h4>
+        <pre><code>
+  import java.nio.file.*;
+  import java.io.IOException;
+  import java.nio.charset.StandardCharsets;
+  
+  public class WriteFileExample {
+      public static void main(String[] args) {
+          Path filePath = Paths.get("example.txt");
+          try {
+              Files.write(filePath, "Hello, World!".getBytes(StandardCharsets.UTF_8));
+              System.out.println("Data written to file.");
+          } catch (IOException e) {
+              e.printStackTrace();
+          }
+      }
+  }
+        </code></pre>
+  
+        <h4>Example: Reading from a File</h4>
+        <pre><code>
+  import java.nio.file.*;
+  import java.io.IOException;
+  import java.nio.charset.StandardCharsets;
+  import java.util.List;
+  
+  public class ReadFileExample {
+      public static void main(String[] args) {
+          Path filePath = Paths.get("example.txt");
+          try {
+              List<String> lines = Files.readAllLines(filePath, StandardCharsets.UTF_8);
+              for (String line : lines) {
+                  System.out.println(line);
+              }
+          } catch (IOException e) {
+              e.printStackTrace();
+          }
+      }
+  }
+        </code></pre>
+  
+        <h3>5. Checking File Properties</h3>
+        <p>The <code>Files</code> class provides methods like <code>exists()</code>, <code>isReadable()</code>, <code>isWritable()</code>, and <code>size()</code> to check file properties.</p>
+  
+        <h4>Example: Checking File Properties</h4>
+        <pre><code>
+  import java.nio.file.*;
+  
+  public class FilePropertiesExample {
+      public static void main(String[] args) {
+          Path filePath = Paths.get("example.txt");
+          try {
+              if (Files.exists(filePath)) {
+                  System.out.println("File exists.");
+                  System.out.println("Readable: " + Files.isReadable(filePath));
+                  System.out.println("Writable: " + Files.isWritable(filePath));
+                  System.out.println("Size: " + Files.size(filePath) + " bytes");
+              } else {
+                  System.out.println("File does not exist.");
+              }
+          } catch (IOException e) {
+              e.printStackTrace();
+          }
+      }
+  }
+        </code></pre>
+      </section>
+  </main>
+
+  <!-- Placeholder for Footer -->
+  <div id="footer-container"></div>
+  <script src="../js/scripts.js"></script>
+</body>
+</html>
